@@ -19,14 +19,3 @@ keptn send event new-artifact ...
 
 Do the rest with the script `keptn-hotday-2021/scripts/onboard-hipstershop.sh`
 
-## Configure monitoring
-
-```
-keptn configure monitoring dynatrace --project=hipstershop
-```
-
-## Add Tests
-
-## Add Quality Gate
-
-## 

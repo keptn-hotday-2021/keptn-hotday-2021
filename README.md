@@ -19,11 +19,20 @@ SSH into the machine
 ## Install Keptn
 done via Keptn-in-a-box
 
+```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 chmod +x keptn-in-a-box.sh
+```
 
+install
+```
 sudo bash -c './keptn-in-a-box.sh &'
+```
+
+then watch the logs...
+```
 less +F /tmp/install.log
+```
 
 Installation will take about 6-10 minutes
 
