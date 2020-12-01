@@ -1,0 +1,2 @@
+image: gcr.io/dynatrace-demoability/awsfrontend:45c069f
+replicaCount: 1
