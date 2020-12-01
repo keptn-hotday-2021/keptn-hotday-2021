@@ -8,9 +8,9 @@
 
 ## Infrastructure in AWS
 
-ubuntu 20.4 LTS 
-size m5.4xlarge
-disk 30GB
+- ubuntu 20.4 LTS 
+- size m5.4xlarge
+- disk 30GB
 
 ## connect to your instance
 
