@@ -41,6 +41,19 @@ Installation will take about 6-10 minutes
 - Unleash
 - Sockshop (carts microservice) with multi-stage pipeline
 
-#
 
-Follow up with 1-deploy-hipstershop.md
+# Clone needed resources
+
+TODO change to correct URL if needed
+
+```
+git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
+```
+
+probably clone KIAB as well or check if cloned for current user
+
+
+
+
+# Follow up with 1-deploy-hipstershop.md
+
