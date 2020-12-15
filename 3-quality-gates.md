@@ -5,8 +5,6 @@
 Let us add some tests that will be triggered by Keptn for each new deployment.
 
 ```
-cd ???
-
 keptn add-resource --project=hipstershop --stage=hardening --service=frontend --resource=service/frontend/jmeter/load.jmx --resourceUri=jmeter/load.jmx
 
 keptn add-resource --project=hipstershop --stage=hardening --service=frontend --resource=service/frontend/jmeter/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
@@ -42,3 +40,9 @@ Open the bridge and let's check
 keptn send event new-artifact --project=hipstershop --service=frontend --image=gcr.io/dynatrace-demoability/frontend --tag=v2.1
 ```
 
+# ATTENTION
+
+services might not show up correctly in Dyntrace
+
+if not, a restart of all pods in the namespaces `hipstershop-hardening` and `hipstershop-production` should to the trick. 
+we have to verify and if we need this workaround, we need to explain why.

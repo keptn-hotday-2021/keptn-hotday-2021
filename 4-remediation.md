@@ -32,6 +32,16 @@ curl --request POST \
 }'
 ```
 
+Option 2: do we want to do it via the UI? or we can just take a look what was created:
+
+```
+http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+```
+Credentials: keptn/keptn
+
+We can see one feature flag created
+![unleash](./assets/unleash-ff.png)
+
 ## Configure Keptn for Unleash
 
 Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
@@ -48,8 +58,6 @@ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service
 ## Add remediation instructions
 
 ```
-cd ???
-
 keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=service/adservice/remediation.yaml --resourceUri=remediation.yaml
 ```
 

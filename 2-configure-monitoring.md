@@ -2,11 +2,12 @@
 
 Prepare Dynatrace environment variables
 ```
-
 export DT_TENANT= ## NO HTTPS and NO SLASHES!
 export DT_API_TOKEN=
 export DT_PAAS_TOKEN=
 ```
+
+create secret
 
 ```
 kubectl -n keptn create secret generic dynatrace --from-literal="DT_TENANT=$DT_TENANT" --from-literal="DT_API_TOKEN=$DT_API_TOKEN" --from-literal="KEPTN_API_URL=http://keptn.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api" --from-literal="KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)" --from-literal="KEPTN_BRIDGE_URL=http://keptn.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/bridge"

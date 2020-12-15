@@ -40,7 +40,8 @@ Installation will take about 6-10 minutes
 - Keptn
 - Unleash
 - Sockshop (carts microservice) with multi-stage pipeline
-
+- Gitea - our UI for Git! (check the installation logs)
+- a simple welcome website (check the installation logs)
 
 # Clone needed resources
 
@@ -53,7 +54,13 @@ git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
 probably clone KIAB as well or check if cloned for current user
 
 
+# Start the lab
 
+For the lab, right now we have dedicated sub-documents
 
-# Follow up with 1-deploy-hipstershop.md
+- 0-explore-keptn.md
+- 1-deploy-hipstershop.md
+- 2-configure-monitoring.md
+- 3-quality-gates.md
+- 4-remediation.md 
 

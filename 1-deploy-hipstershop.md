@@ -2,11 +2,14 @@
 
 ## Create project 
 
+Make sure your are in the correct folder: `keptn-hotday-2021`.
+
+the following command should use the token from Gitea but we can also use it as it is and add the Git upstream later.
 ```
-keptn create project hipstershop --shipyard=...
+keptn create project hipstershop --shipyard=keptn-resources/shipyard.yaml
 ```
 
-Sample script:  `keptn-hotday-2021/scripts/createProject-hipstershop.sh`
+(Sample script:  `keptn-hotday-2021/scripts/createProject-hipstershop.sh`)
 
 
 TODO GIT UPSTREAM
@@ -21,12 +24,43 @@ e.g.
 
 ## Onboard services
 
-For one or two services do it manually:
+
+Let's add our first service:
 
 ```
-keptn onboard service ...
-keptn send event new-artifact ...
+keptn onboard service adservice --project=hipstershop --chart=./helm/adservice/
 ```
+
+and deploy it
+
+```
+keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice:jdk11
+```
+
+Let's add our second service
+
+```
+keptn onboard service redis-cart --project=hipstershop --chart=../helm/redis-cart/ --deployment-strategy=direct
+```
+
+... and deploy it
+
+```
+keptn send event new-artifact --project=hipstershop --service=redis-cart --image=redis:alpine
+```
+
 
 Do the rest with the script `keptn-hotday-2021/scripts/onboard-hipstershop.sh`
 
+
+## Let's take a look
+
+once finished, take a look:
+
+```
+echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+
+echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+```
+
+(execute and open the URLs in a browser)

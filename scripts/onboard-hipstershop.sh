@@ -1,14 +1,14 @@
 
 ## onboard all services
 
-keptn onboard service redis-cart --project=hipstershop --chart=../helm/redis-cart/ --deployment-strategy=direct
-sleep 3
-keptn send event new-artifact --project=hipstershop --service=redis-cart --image=redis:alpine
+#keptn onboard service redis-cart --project=hipstershop --chart=../helm/redis-cart/ --deployment-strategy=direct
+#sleep 3
+#keptn send event new-artifact --project=hipstershop --service=redis-cart --image=redis:alpine
 
-sleep 1
-keptn onboard service adservice --project=hipstershop --chart=../helm/adservice/
-sleep 3
-keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice:jdk11
+#sleep 1
+#keptn onboard service adservice --project=hipstershop --chart=../helm/adservice/
+#sleep 3
+#keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice:jdk11
 
 sleep 1
 keptn onboard service cartservice --project=hipstershop --chart=../helm/cartservice
