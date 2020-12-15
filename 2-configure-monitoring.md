@@ -49,3 +49,7 @@ Add the Dynatrace SLI service that will fetch the data later on for our quality 
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/release-0.7.1/deploy/service.yaml -n keptn
 ```
 
+
+```
+keptn add-resource --project=hipstershop --resource=keptn-resources/sli-config-dynatrace.yaml --resourceUri=dynatrace/sli.yaml
+```
