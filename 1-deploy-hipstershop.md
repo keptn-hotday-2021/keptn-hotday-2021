@@ -51,7 +51,7 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 ```
 
 
-Do the rest with the script `./home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh`
+Do the rest with the script `. /home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh`
 
 
 ## Let's take a look
