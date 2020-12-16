@@ -2,6 +2,15 @@
 
 !Work-in-progress!
 
+*to do*
+* remove gitea section?
+* revisit where dynatrace gets installed
+* add dynatrace and/or add steps for KiaB (is the repo needed?)
+
+*problems (?)*
+>Start upgrading chart hipstershop-hardening-loadgenerator in namespace hipstershop-hardening
+>Warning: Websocket connection timed out
+
 ## some welcome words...
 
 ... go here
