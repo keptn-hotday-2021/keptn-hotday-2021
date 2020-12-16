@@ -29,7 +29,7 @@ e.g.
 Let's add our first service:
 
 ```
-keptn onboard service adservice --project=hipstershop --chart=./helm/adservice/
+keptn onboard service adservice --project=hipstershop --chart=/home/$(whoami)/keptn-hotday-2021/helm/adservice/
 ```
 
 and deploy it
@@ -41,7 +41,7 @@ keptn send event new-artifact --project=hipstershop --service=adservice --image=
 Let's add our second service
 
 ```
-keptn onboard service redis-cart --project=hipstershop --chart=./helm/redis-cart/ --deployment-strategy=direct
+keptn onboard service redis-cart --project=hipstershop --chart=/home/$(whoami)/keptn-hotday-2021/helm/redis-cart/ --deployment-strategy=direct
 ```
 
 ... and deploy it
@@ -51,7 +51,7 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 ```
 
 
-Do the rest with the script `keptn-hotday-2021/scripts/onboard-hipstershop.sh`
+Do the rest with the script `./home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh`
 
 
 ## Let's take a look
