@@ -11,6 +11,7 @@ keptn create project hipstershop --shipyard=keptn-resources/shipyard.yaml
 
 (Sample script:  `keptn-hotday-2021/scripts/createProject-hipstershop.sh`)
 
+**Are we using gitea in this?**
 
 TODO GIT UPSTREAM
 
@@ -40,7 +41,7 @@ keptn send event new-artifact --project=hipstershop --service=adservice --image=
 Let's add our second service
 
 ```
-keptn onboard service redis-cart --project=hipstershop --chart=../helm/redis-cart/ --deployment-strategy=direct
+keptn onboard service redis-cart --project=hipstershop --chart=./helm/redis-cart/ --deployment-strategy=direct
 ```
 
 ... and deploy it
