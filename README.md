@@ -31,7 +31,7 @@ sudo bash -c './keptn-in-a-box.sh &'
 
 then watch the logs...
 ```
-less +F /tmp/install.log
+tail -f /tmp/install.log
 ```
 
 Installation will take about 6-10 minutes
@@ -43,7 +43,7 @@ Installation will take about 6-10 minutes
 - Gitea - our UI for Git! (check the installation logs)
 - a simple welcome website (check the installation logs)
 
-# Clone needed resources
+# Clone needed resources into your home directory
 
 TODO change to correct URL if needed
 
