@@ -6,6 +6,7 @@
 * remove gitea section?
 * revisit where dynatrace gets installed
 * add dynatrace and/or add steps for KiaB (is the repo needed?)
+* modify onboaring script with comments
 
 *problems (?)*
 >Start upgrading chart hipstershop-hardening-loadgenerator in namespace hipstershop-hardening
