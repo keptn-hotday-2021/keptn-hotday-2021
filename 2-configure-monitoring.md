@@ -1,8 +1,10 @@
 ## Configure monitoring
+>> most if not all of  this is setup with keptn in a box.  Will need to revist after clean  install
+
 
 Prepare Dynatrace environment variables
 ```
-export DT_TENANT= ## NO HTTPS and NO SLASHES!
+export DT_TENANT= ## NO HTTPS and NO SLASHES! ex UUID.live.dynatrace.com
 export DT_API_TOKEN=
 export DT_PAAS_TOKEN=
 ```
