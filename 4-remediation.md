@@ -47,6 +47,15 @@ We can see one feature flag created
 Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
 
 TODO check if already exists if installation is done via Keptn-in-a-box
+>> tokens exist from kiab as well as some components:
+```
+kyle.harrington@kh-keptn:~/keptn-hotday-2021$ kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
+Error from server (AlreadyExists): secrets "unleash" already exists
+kyle.harrington@kh-keptn:~/keptn-hotday-2021$ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
+deployment.apps/unleash-service configured
+service/unleash-service unchanged
+```
+
 ```
 kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
 ```
