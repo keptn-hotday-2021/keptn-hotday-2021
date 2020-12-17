@@ -1,5 +1,5 @@
 # keptn-hotday-2021
-
+![](https://dt-cdn.net/images/dynatrace-logo-rgb-cph-800x142px-ac1b21b785.svg)
 !Work-in-progress!
 
 *to do*
