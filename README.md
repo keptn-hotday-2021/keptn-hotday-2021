@@ -17,8 +17,10 @@
 * Considering reqorking the keptn-in-box script for a quicker deploy
 * need to add a step to cycle all the pods after dyantrace installation
     ```
-    for i in `kubectl get pod -n keptn | awk '{print $1}' | grep -v "NAME"`; do kubectl delete pod $i -n keptn; done
+for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
     ```
+
+keptn ingress default unleash-dev
 
 ## Welcome to Dynatrace HoT Day 2021!
 
@@ -83,9 +85,14 @@ PAASTOKEN="myDynatracePaaSToken"
 APITOKEN="myDynatraceApiToken"
 ```
 
-Install Keptn in a Box with sudo permissions
+5. Install Keptn in a Box with sudo permissions
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
+```
+6. Ignore the LESS command output and use the below command to watch the logs:
+
+```
+tail -f /tmp/install.log
 ```
 
 Installation will take about 6-10 minutes
@@ -99,6 +106,14 @@ Installation will take about 6-10 minutes
 - Sockshop (carts microservice) with multi-stage pipeline
 - Gitea - our UI for Git! (check the installation logs)
 - A simple welcome website (check the installation logs)
+
+7. Run the following command to restart some of the deployed pods
+
+Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before oneageny could be fully installed will be properly insturmented. 
+
+    ```
+for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
+    ```
 
 # Clone needed resources into your home directory
 
