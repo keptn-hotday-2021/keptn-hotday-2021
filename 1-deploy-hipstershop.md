@@ -53,6 +53,13 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 
 Do the rest with the script `. /home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh`
 
+Verify that all pods have been deployed succesfully by running the below command.
+
+**If the output is not "0" please notify your intstructor**
+```
+kubectl  get pod --all-namespaces  | grep -v "Running\|NAME" | wc -l
+```
+
 
 ## Let's take a look
 
