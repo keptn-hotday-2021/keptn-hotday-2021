@@ -106,7 +106,7 @@ Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. Thi
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
 ```
 
-# Clone needed resources into your home directory
+### 8. Clone needed resources into your home directory
 
 TODO change to correct URL if needed
 
@@ -114,10 +114,7 @@ TODO change to correct URL if needed
 git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
 ```
 
-probably clone KIAB as well or check if cloned for current user
-
-
-# Start the lab
+# NEXT STEPS
 
 For the lab, right now we have dedicated sub-documents
 
