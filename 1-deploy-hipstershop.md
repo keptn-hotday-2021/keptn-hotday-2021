@@ -6,7 +6,7 @@ Make sure your are in the correct folder: `keptn-hotday-2021`.
 
 the following command should use the token from Gitea but we can also use it as it is and add the Git upstream later.
 ```
-keptn create project hipstershop --shipyard=keptn-resources/shipyard.yaml
+keptn create project hipstershop --shipyard=/home/$(whoami)/keptn-hotday-2021/keptn-resources/shipyard.yaml
 ```
 
 (Sample script:  `keptn-hotday-2021/scripts/createProject-hipstershop.sh`)
