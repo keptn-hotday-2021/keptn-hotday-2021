@@ -46,7 +46,7 @@ SSH into the machine
 
 ## Install Keptn-in-a-Box
 
-1. Download the installation script to your root directory
+**1. Download the installation script to your root directory**
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
