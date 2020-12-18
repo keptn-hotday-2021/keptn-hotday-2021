@@ -50,14 +50,38 @@ SSH into the machine
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
-2. Edit the keptn in a box script to include your tenant ID, PASS & API tokens. These variable values can be found on line 38 of the file:
+2. Create a Dynatrace API Token
+Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API. Then, create anew API token with the following permissions
+
+* Access problem and event feed, metrics, and topology
+* Read log content
+* Read configuration
+* Write configuration
+* Capture request data
+* Real user monitoring JavaScript tag management
+* Read metrics
+* Ingest metrics
+* Read entities
+
+The below screen shot can be used for reference:
+![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
+
+3. Create a Dynatrace PaaS Token
+In your Dynatrace tenant, go to Settings > Integration > Platform as a Service, and create a new PaaS Token.
+
+4. Enter your Dynatrace Credentials
+Now that you have an API-Token and a PaaS-Token, we can enter the credentials.
+In the keptn-in-a-box.sh file enter your credentials under the section "Define Dynatrace Environment".
+
+
+Edit the keptn in a box script to include your tenant ID, PASS & API tokens. These variable values can be found on line 39 of the file:
 ```
- # ---- Define Dynatrace Environment ----
- # Sample: https://{your-domain}/e/{your-environment-id} for managed or https://{your-environment-id}.live.dynatrace.com for SaaS
- TENANT=
- PAASTOKEN=
- APITOKEN=
- ```
+# ---- Define Dynatrace Environment ---- 
+# Sample: https://{your-domain}/e/{your-environment-id} for managed or https://{your-environment-id}.live.dynatrace.com for SaaS
+TENANT="https://mytenant.live.dynatrace.com"
+PAASTOKEN="myDynatracePaaSToken"
+APITOKEN="myDynatraceApiToken"
+```
 
 install
 ```
