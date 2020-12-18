@@ -46,7 +46,7 @@ SSH into the machine
 
 ## Install Keptn-in-a-Box
 
-**1. Download the installation script to your root directory**
+**1. Download the github repo to your home directory**
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
@@ -83,9 +83,9 @@ PAASTOKEN="myDynatracePaaSToken"
 APITOKEN="myDynatraceApiToken"
 ```
 
-install
+Install Keptn in a Box with sudo permissions
 ```
-chmod +x keptn-in-a-box.sh && sudo ./keptn-in-a-box.sh & tail -f /tmp/install.log
+chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
 
 Installation will take about 6-10 minutes
@@ -105,7 +105,7 @@ Installation will take about 6-10 minutes
 TODO change to correct URL if needed
 
 ```
-git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
+git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
 ```
 
 probably clone KIAB as well or check if cloned for current user
