@@ -1,14 +1,14 @@
 ## Configure monitoring
 >> most if not all of  this is setup with keptn in a box.  Will need to revist after clean  install
 
-
+# nope
 Prepare Dynatrace environment variables
 ```
 export DT_TENANT= ## NO HTTPS and NO SLASHES! ex UUID.live.dynatrace.com
 export DT_API_TOKEN=
 export DT_PAAS_TOKEN=
 ```
-
+# nope
 create secret
 
 ```
@@ -37,7 +37,10 @@ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-servi
 
 Verify that we have our integration up and running.
 ```
-kubectl get pods -n keptn
+kubectl get pods -n keptn 
+
+dynatrace-service-f4c479bc7-ggr8k
+
 ```
 
 TODO add what's happening in here
