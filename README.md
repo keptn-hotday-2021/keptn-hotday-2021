@@ -11,16 +11,6 @@
 * modify onboaring script with comments
     * unknown issue with helm chart conflict, must be off & re-onboarded to correct
 * need a run down of what unleashed is supposed to be doing
-* Add relevant KiaB steps to setup
-    * https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/index.html?index=..%2F..index#0
-
-* Considering reqorking the keptn-in-box script for a quicker deploy
-* need to add a step to cycle all the pods after dyantrace installation
-    ```
-for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
-    ```
-
-keptn ingress default unleash-dev
 
 ## Welcome to Dynatrace HoT Day 2021!
 
@@ -111,9 +101,9 @@ Installation will take about 6-10 minutes
 
 Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before oneageny could be fully installed will be properly insturmented. 
 
-    ```
+```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
-    ```
+```
 
 # Clone needed resources into your home directory
 
