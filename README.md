@@ -14,6 +14,7 @@
 * Add relevant KiaB steps to setup
     * https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/index.html?index=..%2F..index#0
 
+* Considering reqorking the keptn-in-box script for a quicker deploy
 * need to add a step to cycle all the pods after dyantrace installation
     ```
     for i in `kubectl get pod -n keptn | awk '{print $1}' | grep -v "NAME"`; do kubectl delete pod $i -n keptn; done
@@ -43,30 +44,34 @@ In this this lab we'll be shwoing you how to:
 
 SSH into the machine 
 
-## Install Keptn
-done via Keptn-in-a-box
+## Install Keptn-in-a-Box
 
+1. Download the installation script to your root directory
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
-chmod +x keptn-in-a-box.sh
 ```
+2. Edit the keptn in a box script to include your tenant ID, PASS & API tokens. These variable values can be found on line 38 of the file:
+```
+ # ---- Define Dynatrace Environment ----
+ # Sample: https://{your-domain}/e/{your-environment-id} for managed or https://{your-environment-id}.live.dynatrace.com for SaaS
+ TENANT=
+ PAASTOKEN=
+ APITOKEN=
+ ```
 
 install
 ```
-sudo bash -c './keptn-in-a-box.sh &'
-```
-
-then watch the logs...
-```
-tail -f /tmp/install.log
+chmod +x keptn-in-a-box.sh && sudo ./keptn-in-a-box.sh & tail -f /tmp/install.log
 ```
 
 Installation will take about 6-10 minutes
 
 ## What has been installed?
+- Micro K8s
 - Keptn
 - Unleash
 - Dynatrace OneAgent
+- Docker
 - Sockshop (carts microservice) with multi-stage pipeline
 - Gitea - our UI for Git! (check the installation logs)
 - A simple welcome website (check the installation logs)
