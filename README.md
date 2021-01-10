@@ -100,7 +100,7 @@ What has been installed?
 
 ### 7. Run the following command to restart some of the deployed pods
 
-Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before oneageny could be fully installed will be properly insturmented. 
+Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before oneagent could be fully installed will be properly instrumented. 
 
 ```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
