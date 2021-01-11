@@ -85,6 +85,7 @@ keptn add-resource --project=hipstershop --service=adservice --stage=production 
 keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
 ```
 
+## TODO run the experiment and explain what is happening
 
 
 # WRAP UP?
