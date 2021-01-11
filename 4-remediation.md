@@ -1,4 +1,6 @@
 
+# STILL NEED AN EXPLINATION OF WHAT WE'RE DOING HERE
+
 ## Deploy Unleash?
 
 unleash is already deployed via Keptn-in-a-box. check if we have time to do it manually or if the automation is fine.
@@ -46,39 +48,28 @@ We can see one feature flag created
 
 Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
 
-TODO check if already exists if installation is done via Keptn-in-a-box
->> tokens exist from kiab as well as some components:
-```
-kyle.harrington@kh-keptn:~/keptn-hotday-2021$ kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
-Error from server (AlreadyExists): secrets "unleash" already exists
-kyle.harrington@kh-keptn:~/keptn-hotday-2021$ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
-deployment.apps/unleash-service configured
-service/unleash-service unchanged
-```
-
-```
-kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
-```
-
 ```
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
 ```
 
-## Add remediation instructions
+1. Configure unleash remediation instructions
 
 ```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=service/adservice/remediation.yaml --resourceUri=remediation.yaml
+keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/remediation.yaml --resourceUri=remediation.yaml
+```
+2. 
+```
+keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
 ```
 
-```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=service/adservice/slo.yaml --resourceUri=slo.yaml
-```
-
-## Configure Dynatrace
+3. Configure Dynatrace
+- Navigate to the hipstershop adservice in your Dynatrace tenat
 
 ![anomaly detection](./assets/dt-anomaly-detection.png)
 
-## Do experiment
+
+
+4. Do experiment
 
 Deploy version that has the flag included.
 

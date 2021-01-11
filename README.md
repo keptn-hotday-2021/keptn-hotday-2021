@@ -109,7 +109,7 @@ TODO change to correct URL if needed
 
 ```
 Main
-git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
+git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
 
 Harrington WIP
 git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021

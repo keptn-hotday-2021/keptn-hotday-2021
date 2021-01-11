@@ -22,7 +22,7 @@ keptn configure monitoring dynatrace --project=hipstershop
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/release-0.7.1/deploy/service.yaml -n keptn
 ```
 
-5. Configue the SLI using the the sli.yaml file
+5. Configue Keptn to leverage SLIs using the the sli.yaml file
 ```
 keptn add-resource --project=hipstershop --resource=/home/$(whoami)/keptn-hotday-2021/keptn-resources/sli-config-dynatrace.yaml --resourceUri=dynatrace/sli.yaml
 ```
