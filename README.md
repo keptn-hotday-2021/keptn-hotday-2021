@@ -6,19 +6,16 @@
 
 *to do: Harrington Edition*
 * need updates from jurgen for gitea section
-* revisit where dynatrace gets installed for clean build
 * add dynatrace and/or add steps for KiaB (is the repo needed?)
-* modify onboaring script with comments
-    * unknown issue with helm chart conflict, must be off & re-onboarded to correct
 * need a run down of what unleashed is supposed to be doing
 
 ## Welcome to Dynatrace HoT Day 2021!
 
-In today's hands on training we will be reviewing how to install and intergrate Keptn, an open source *something something company buzzwords here*
+In today's hands on training we will be reviewing how to install and intergrate Keptn, an event-based control plane for continuous delivery and automated operations for cloud-native applications.
 
 ![](https://keptn.sh/images/logo.svg)
 
-In this this lab we'll be shwoing you how to:
+In this this lab we'll be showing you how to:
 * Deploy Keptn into a Kubernetes cluster
 * Deploy Dyantrace OneAgent into a Kubernetes cluster
 * Build a multi-stage kubernetes & git ops based deployment pipeline
@@ -111,16 +108,20 @@ for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i;
 TODO change to correct URL if needed
 
 ```
+Main
+git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
+
+Harrington WIP
 git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
 ```
 
-# NEXT STEPS
+## NEXT STEPS
 
 For the lab, right now we have dedicated sub-documents
 
-- 0-explore-keptn.md
-- 1-deploy-hipstershop.md
-- 2-configure-monitoring.md
-- 3-quality-gates.md
-- 4-remediation.md 
-
+- [README](./README.md)
+- [1- Explore Keptn](./0-explore-keptn.md)
+- [2- Deploy Hipstershop](./1-deploy-hipstershop.md)
+- [3- Configure Monitoring](./2-configure-monitoring.md)
+- [4- Configure Quality Gates](./3-quality-gates.md)
+- [5- Configure Redmediation](./4-remediation.md)

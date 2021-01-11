@@ -46,3 +46,11 @@ services might not show up correctly in Dyntrace
 
 if not, a restart of all pods in the namespaces `hipstershop-hardening` and `hipstershop-production` should to the trick. 
 we have to verify and if we need this workaround, we need to explain why.
+
+---
+- [README](./README.md)
+- [1- Explore Keptn](./0-explore-keptn.md)
+- [2- Deploy Hipstershop](./1-deploy-hipstershop.md)
+- [3- Configure Monitoring](./2-configure-monitoring.md)
+- [4- Configure Quality Gates](./3-quality-gates.md)
+- [5- Configure Redmediation](./4-remediation.md)

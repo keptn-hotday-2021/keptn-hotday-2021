@@ -85,3 +85,10 @@ Deploy version that has the flag included.
 ```
 keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
 ```
+---
+- [README](./README.md)
+- [1- Explore Keptn](./0-explore-keptn.md)
+- [2- Deploy Hipstershop](./1-deploy-hipstershop.md)
+- [3- Configure Monitoring](./2-configure-monitoring.md)
+- [4- Configure Quality Gates](./3-quality-gates.md)
+- [5- Configure Redmediation](./4-remediation.md)
