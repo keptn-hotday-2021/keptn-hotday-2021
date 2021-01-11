@@ -62,20 +62,27 @@ keptn add-resource --project=hipstershop --service=adservice --stage=production 
 keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
 ```
 
-3. Configure Dynatrace
+3. Login to the Dynatrace Tenant UI
 - Navigate to the hipstershop adservice in your Dynatrace tenat
+- click on "edit" 
+- click on "anonmaly detection
 
+4. Modify the service settings as outlined below
+- Disable global anomaly detection
+- Set "detect response time degredations" to "using fixed thresholds" from the drop down
+- Set "Alert if the response time of the slowest 10% increases beyond" to "800"ms
+- Set sensitivity to "High"
+- See image below for reference
 ![anomaly detection](./assets/dt-anomaly-detection.png)
 
 
-
-4. Do experiment
-
-Deploy version that has the flag included.
+5. Deploy version that has the flag included. 
 
 ```
 keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
 ```
+
+# WRAP UP?
 ---
 - [README](./README.md)
 - [1- Explore Keptn](./0-explore-keptn.md)
