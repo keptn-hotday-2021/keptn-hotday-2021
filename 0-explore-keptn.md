@@ -28,7 +28,7 @@ To learn more about Keptn check out the below links:
 
 [Keptn Homepage](https://keptn.sh/)
 
-[Join The Keptn Slack Channel](https://keptn.slack.com/)
+[Join The Keptn Slack Channel](https://slack.keptn.sh/)
 
 [Join The Keptn Community and Contribute to the Keptn Project](https://github.com/keptn/community)
 
