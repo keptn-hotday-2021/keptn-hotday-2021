@@ -39,13 +39,6 @@ echo http://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls
 keptn send event new-artifact --project=hipstershop --service=frontend --image=gcr.io/dynatrace-demoability/frontend --tag=v2.1
 ```
 
-## TROUBLESHOOTING
-
-services might not show up correctly in Dyntrace
-
-if not, a restart of all pods in the namespaces `hipstershop-hardening` and `hipstershop-production` should to the trick. 
-we have to verify and if we need this workaround, we need to explain why.
-
 ---
 - [README](./README.md)
 - [1- Explore Keptn](./0-explore-keptn.md)
