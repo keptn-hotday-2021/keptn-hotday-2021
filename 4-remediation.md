@@ -34,7 +34,7 @@ curl --request POST \
 }'
 ```
 
-Option 2: do we want to do it via the UI? or we can just take a look what was created:
+Optional: verify that the feature flag was created in your Unleash server.
 
 ```
 http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
@@ -46,11 +46,14 @@ We can see one feature flag created
 
 ## Configure Keptn for Unleash
 
+### Verify if this step is actually needed
 Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
 ```
+
+## Keep this for reference (might not be needed - we have to verify it)
 
 1. Configure unleash remediation instructions
 
