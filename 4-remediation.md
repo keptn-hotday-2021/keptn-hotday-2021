@@ -1,4 +1,6 @@
 
+# STILL NEED AN EXPLINATION OF WHAT WE'RE DOING HERE
+
 ## Deploy Unleash?
 
 unleash is already deployed via Keptn-in-a-box. check if we have time to do it manually or if the automation is fine.
@@ -32,7 +34,7 @@ curl --request POST \
 }'
 ```
 
-Option 2: do we want to do it via the UI? or we can just take a look what was created:
+Optional: verify that the feature flag was created in your Unleash server.
 
 ```
 http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
@@ -44,34 +46,40 @@ We can see one feature flag created
 
 ## Configure Keptn for Unleash
 
+### Verify if this step is actually needed
 Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
-
-TODO check if already exists if installation is done via Keptn-in-a-box
-```
-kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
-```
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
 ```
 
-## Add remediation instructions
+## Keep this for reference (might not be needed - we have to verify it)
+
+1. Configure unleash remediation instructions
 
 ```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=service/adservice/remediation.yaml --resourceUri=remediation.yaml
+keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/remediation.yaml --resourceUri=remediation.yaml
+```
+2. 
+```
+keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
 ```
 
-```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=service/adservice/slo.yaml --resourceUri=slo.yaml
-```
+3. Login to the Dynatrace Tenant UI
+- Navigate to the hipstershop adservice in your Dynatrace tenat
+- click on "edit" 
+- click on "anonmaly detection
 
-## Configure Dynatrace
-
+4. Modify the service settings as outlined below
+- Disable global anomaly detection
+- Set "detect response time degredations" to "using fixed thresholds" from the drop down
+- Set "Alert if the response time of the slowest 10% increases beyond" to "800"ms
+- Set sensitivity to "High"
+- See image below for reference
 ![anomaly detection](./assets/dt-anomaly-detection.png)
 
-## Do experiment
 
-Deploy version that has the flag included.
+5. Deploy version that has the flag included. 
 
 also the JDK11 version should have the feature flag incluced -- TO BE TESTED!
 ```
