@@ -81,18 +81,57 @@ keptn add-resource --project=hipstershop --service=adservice --stage=production 
 
 5. Deploy version that has the flag included. 
 
+also the JDK11 version should have the feature flag incluced -- TO BE TESTED!
 ```
 keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
 ```
 
-## TODO run the experiment and explain what is happening
+
+## Let's run the experiment
+
+Let's now change our configuration without redeploying the application. We will do this via the Feature Toggle that we just created. 
+Please note that our application is already prepared to implement the effect of the feature flag and with Unleash we have a nice way to toggle the feature flag from outside of the application.
+
+In your Unleash environment, let's do the following: **Turn on** the feature flag "EnablePromotion" that we created earlier.
+![unleash enable](./assets/unleash-enable.png)
+
+### What will happen next?
+
+This will enable a special promotion in our `AdService` of the Hipstershop. However, it our demo it is expected, that this will introduce some troubles. But don't worry, Keptn got us covered!
+
+After a couple of minutes Dynatrace will detect a decrease in the response time of the `AdService` and will open a problem ticket. Due to the Keptn integration with Dynatrace, an alert is sent from Dynatrace to Keptn.
+Keptn will pick up this problem event (alert) and start executing the remediation workflow. 
+
+The workflow was already defined by us in the `remediation.yaml` file that we added earlier. Again, a short recap what we have defined:
+
+```yaml
+apiVersion: spec.keptn.sh/0.1.4
+kind: Remediation
+metadata:
+  name: adservice-remediation
+spec:
+  remediations:
+    - problemType: Response time degradation
+      actionsOnOpen:
+        - action: toggle-feature
+          name: Toogle feature flag
+          description: Toogle feature flag EnablePromotion to OFF
+          value: 
+            EnablePromotion: "off"
+    - problemType: Failure rate increase
+      actionsOnOpen:
+        - action: toggle-feature
+          name: Toogle feature flag
+          description: Toogle feature flag EnablePromotion to OFF
+          value: 
+            EnablePromotion: "off"
+```
+
+In this example, we have two remediations defined, but in today's workshop we only use the one for the `problemType` "Response time degradation". There is an `action` defined if the problem opens, which is a `toggle-feature` action. It has name, description, and what is important for the automation part: a value property with key/value pairs. In our case the key is the name of the feature flag, i.e., `EnablePromotion` and the value is the state we want the feature toggle to set. 
+
+The [Unleash feature toggle integration](https://github.com/keptn-contrib/unleash-service/) is picking up these values and executing the remediation as defined in the declarative `remediation.yaml` file. 
+
+We will see all the steps that are executed in the Keptn's Bridge:
+![bridge remediation](./assets/bridge-remediation.png)
 
 
-# WRAP UP?
----
-- [README](./README.md)
-- [1- Explore Keptn](./0-explore-keptn.md)
-- [2- Deploy Hipstershop](./1-deploy-hipstershop.md)
-- [3- Configure Monitoring](./2-configure-monitoring.md)
-- [4- Configure Quality Gates](./3-quality-gates.md)
-- [5- Configure Redmediation](./4-remediation.md)
