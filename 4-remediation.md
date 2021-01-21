@@ -126,3 +126,28 @@ The [Unleash feature toggle integration](https://github.com/keptn-contrib/unleas
 We will see all the steps that are executed in the Keptn's Bridge:
 ![bridge remediation](./assets/bridge-remediation.png)
 
+We see that Keptn triggered the remediation by means of switching off the feature flag. We can also see that Keptn triggered another evaluation, reusing again the SLOs that we have already defined. 
+If the SLOs are met again, the remediation loop is closed, if not, Keptn will trigger the next remediation (if defined).
+
+# Congratulations!
+
+Congratulations! 
+You have successfully completed the hands-on-training with Dynatrace and Keptn!
+
+## Summary
+What you have accomplished in this hands-on-training:
+
+- tba
+- tba
+- tba
+
+# Resources
+
+If you want to learn more, please have a look at the following resources.
+
+- Keptn website [keptn.sh](https://keptn.sh)
+- Keptn tutorials [tutorials.keptn.sh](https://tutorials.keptn.sh)
+- Star us on Github [github.com/keptn/keptn](https://github.com/keptn/keptn)
+- Join the conversation on [Slack](https://slack.keptn.sh)
+- Follow us on Twitter [@keptnProject](https://twitter.com/keptnProject)
+
