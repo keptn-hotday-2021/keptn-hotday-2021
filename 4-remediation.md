@@ -1,11 +1,19 @@
 
 # STILL NEED AN EXPLINATION OF WHAT WE'RE DOING HERE
 
-## Deploy Unleash?
+# Automating Operations & Remediation
 
-unleash is already deployed via Keptn-in-a-box. check if we have time to do it manually or if the automation is fine.
+In this part of the workshop we are moving from *deploying* our applications to production to *operating* them in production and keep them healthy! This is the part that you might already be familiar with Dynatrace and its great A.I. assistant Davis that discovers production issues and its root cause automatically. In the next part, we are taking this even further with Keptn, which can automatically react on those identified problems and trigger counter-actions that will remediate the issue. Even more: Keptn will make sure that the issue is actually remediated, and if not, more remediation actions can be triggered. Exciting, right?
 
-## Configure Unleash
+Let's get started!
+
+## Feature flags
+
+Our application is prepared with a feature flag that we can turn on and off without the need to redeploy the application. We are going to use [Unleash](https://unleash.github.io/) as the framework for the feature flags.
+
+### Configure Unleash
+
+Unleash has already been deployed via the setup of the workshop. Our task is to configure the feature flags that we are going to use.
 
 Either via API calls or via the UI
 
