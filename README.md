@@ -85,7 +85,7 @@ In the meanwhile, your instructor will tell you more about Keptn and this hands-
 - Unleash
 - Dynatrace OneAgent
 - Docker
-- Sockshop (carts microservice) with multi-stage pipeline
+- Sockshop (carts micro service) with multi-stage pipeline
 - Gitea - our UI for Git! (check the installation logs)
 - A simple welcome website (check the installation logs)
 
@@ -95,33 +95,14 @@ You will need a couple of resources in this workshop. Let's go ahead and get the
 
 ### 7. Run the following command to restart some of the deployed pods
 
-Dyntrace OneAngent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before oneagent could be fully installed will be properly instrumented. 
+Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
 
 ```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
 ```
-
-TODO verify if needed
-probably clone KIAB as well or check if cloned for current user
 ### 8. Clone needed resources into your home directory
-
-TODO change to correct URL if needed
 
 ```
 Main
 git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
-
-Harrington WIP
-git clone -b harrington https://github.com/keptn-hotday-2021/keptn-hotday-2021
 ```
-
-## NEXT STEPS
-
-For the lab, right now we have dedicated sub-documents
-
-- [README](./README.md)
-- [1- Explore Keptn](./0-explore-keptn.md)
-- [2- Deploy Hipstershop](./1-deploy-hipstershop.md)
-- [3- Configure Monitoring](./2-configure-monitoring.md)
-- [4- Configure Quality Gates](./3-quality-gates.md)
-- [5- Configure Redmediation](./4-remediation.md)

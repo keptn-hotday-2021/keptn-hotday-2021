@@ -1,6 +1,3 @@
-
-# STILL NEED AN EXPLINATION OF WHAT WE'RE DOING HERE
-
 # Automating Operations & Remediation
 
 In this part of the workshop we are moving from *deploying* our applications to production to *operating* them in production and keep them healthy! This is the part that you might already be familiar with Dynatrace and its great A.I. assistant Davis that discovers production issues and its root cause automatically. In the next part, we are taking this even further with Keptn, which can automatically react on those identified problems and trigger counter-actions that will remediate the issue. Even more: Keptn will make sure that the issue is actually remediated, and if not, more remediation actions can be triggered. Exciting, right?
@@ -45,7 +42,7 @@ curl --request POST \
 Optional: verify that the feature flag was created in your Unleash server.
 
 ```
-http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
 Credentials: keptn/keptn
 
@@ -55,7 +52,7 @@ We can see one feature flag created
 ## Configure Keptn for Unleash
 
 ### Verify if this step is actually needed
-Let's add the credentials for Unleash to be able to communicate from Ketpn to Unleash.
+Let's add the credentials for Unleash to be able to communicate from Keptn to Unleash.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
@@ -74,13 +71,13 @@ keptn add-resource --project=hipstershop --service=adservice --stage=production 
 ```
 
 3. Login to the Dynatrace Tenant UI
-- Navigate to the hipstershop adservice in your Dynatrace tenat
+- Navigate to the hipstershop adservice in your Dynatrace tenant
 - click on "edit" 
-- click on "anonmaly detection
+- click on "anomaly detection
 
 4. Modify the service settings as outlined below
 - Disable global anomaly detection
-- Set "detect response time degredations" to "using fixed thresholds" from the drop down
+- Set "detect response time degradations" to "using fixed thresholds" from the drop down
 - Set "Alert if the response time of the slowest 10% increases beyond" to "800"ms
 - Set sensitivity to "High"
 - See image below for reference
@@ -89,7 +86,7 @@ keptn add-resource --project=hipstershop --service=adservice --stage=production 
 
 5. Deploy version that has the flag included. 
 
-also the JDK11 version should have the feature flag incluced -- TO BE TESTED!
+also the JDK11 version should have the feature flag included -- TO BE TESTED!
 ```
 keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
 ```

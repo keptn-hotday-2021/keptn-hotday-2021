@@ -7,7 +7,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
 ## Configure Dynatrace for our project
 
-1. First, we are going to install the Dynatrace integration for Keptn. This is done with applying the Dynatarce service manifest to our Keptn installation in the MicroK8s cluster.
+1. First, we are going to install the Dynatrace integration for Keptn. This is done with applying the Dynatrace service manifest to our Keptn installation in the MicroK8s cluster.
     ```
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/0.10.1/deploy/service.yaml -n keptn
     ```
@@ -23,7 +23,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
     keptn configure monitoring dynatrace --project=hipstershop
     ```
 
-    This will create tagging rules, default dashboards, managemenet zones, alerting profiles and an integration for Dynatrace problem notifications to be sent to Keptn. 
+    This will create tagging rules, default dashboards, management zones, alerting profiles and an integration for Dynatrace problem notifications to be sent to Keptn. 
 
 1. Now we are going to add the Dynatrace SLI service that will fetch the data later on for our quality gates. Please note that currently this is an implementation detail that we are going to install two different services for Dynatrace. 
     ```

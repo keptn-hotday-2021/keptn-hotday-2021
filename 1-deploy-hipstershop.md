@@ -29,21 +29,6 @@ stages:
 As you can see, the shipyard file defines two stages for our multi-stage delivery in Keptn. The first stage is called "hardening" and we will deploy with a "blue_green" deployment strategy and our test strategy in this stage is to execute "performance" tests. 
 For our "production" stage, we define how we want to execute the approval process. If the Keptn quality gates "passes" we want to automatically deploy the approved microservice into production. If the quality gate evaluation results in a warning, we want a "manual" approval process. Deployment should be again done using a "blue/green" deployment strategy. On top of this, we define to automatically execute remediation actions as counter measures if Keptn receives problem alerts from Dynatrace.
 
-
-TODO: The following command should use the token from Gitea but we can also use it as it is and add the Git upstream later.
-
-**Are we using gitea in this?**
-
-TODO GIT UPSTREAM
-
-e.g.
-- create token in Gitea UI
-- keptn update project with token
-
-
-- troubleshooting: delete GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
-- if not working, delete the `keptn-token.json`
-
 ## Onboard services
 
 Now that we have a project, let us add our application in terms of onboarding each microservice that we want to manage with Keptn.
@@ -80,7 +65,7 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 
 Please let your instructor know if you can not access the application.
 
-## Troublehooting 
+## Troubleshooting 
 
 If you are unable to reach the URLS or some pods are not running run the below command to identify the pods and notify your instructor. 
 ```
@@ -92,4 +77,7 @@ echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage
 
 echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
+Gitea
+- delete GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
+- if not working, delete the `keptn-token.json`
 
