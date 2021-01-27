@@ -25,6 +25,8 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     This will create tagging rules, default dashboards, management zones, alerting profiles and an integration for Dynatrace problem notifications to be sent to Keptn. 
 
+    ![](./assets/dt-dashboard.png) 
+
 1. Now we are going to add the Dynatrace SLI service that will fetch the data later on for our quality gates. Please note that currently this is an implementation detail that we are going to install two different services for Dynatrace. 
     ```
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/release-0.7.1/deploy/service.yaml -n keptn
@@ -51,3 +53,10 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     Let's continue and build our first quality gate in the next step.
 
+
+TODO: verify that we see the adservice correctly in DT
+
+Jürgen had to execute this
+```
+kubectl delete pod -l=app=adservice-primary -n hipstershop-production
+```

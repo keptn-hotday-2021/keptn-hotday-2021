@@ -12,15 +12,13 @@ Our application is prepared with a feature flag that we can turn on and off with
 
 Unleash has already been deployed via the setup of the workshop. Our task is to configure the feature flags that we are going to use.
 
-Either via API calls or via the UI
-
-Option 1: API
-
+Set some variables:
 ```
 export UNLEASH_TOKEN=$(echo -n keptn:keptn | base64)
 export UNLEASH_BASE_URL=http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
 
+Execute the API call to Unleash.
 ```
 curl --request POST \
   --url ${UNLEASH_BASE_URL}/api/admin/features/ \
@@ -39,7 +37,7 @@ curl --request POST \
 }'
 ```
 
-Optional: verify that the feature flag was created in your Unleash server.
+Let's verify that the feature flag was created in your Unleash server.
 
 ```
 echo https://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
@@ -51,9 +49,10 @@ We can see one feature flag created
 
 ## Configure Keptn for Unleash
 
-### Verify if this step is actually needed
-Let's add the credentials for Unleash to be able to communicate from Keptn to Unleash.
+### Credentials
+The credentials for Unleash have already been added in the inital installation script.
 
+TODO probably remove this:
 ```
 kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
 ```
@@ -65,21 +64,53 @@ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service
 ```
 keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/remediation.yaml --resourceUri=remediation.yaml
 ```
-2. 
+
+The instructions that we are adding:
+
+```
+apiVersion: spec.keptn.sh/0.1.4
+kind: Remediation
+metadata:
+  name: adservice-remediation
+spec:
+  remediations:
+    - problemType: Response time degradation
+      actionsOnOpen:
+        - action: toggle-feature
+          name: Toogle feature flag
+          description: Toogle feature flag EnablePromotion to OFF
+          value: 
+            EnablePromotion: "off"
+    - problemType: Failure rate increase
+      actionsOnOpen:
+        - action: toggle-feature
+          name: Toogle feature flag
+          description: Toogle feature flag EnablePromotion to OFF
+          value: 
+            EnablePromotion: "off"
+```
+
+2. Next we are going to add an SLO file for our `AdService`.
 ```
 keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
 ```
 
 3. Login to the Dynatrace Tenant UI
-- Navigate to the hipstershop adservice in your Dynatrace tenant
-- click on "edit" 
-- click on "anomaly detection
+Navigate to the hipstershop adservice in your Dynatrace tenant:
+![](./assets/dt-transaction-services.png)
+
+Next, we are going to edit the anomaly detection to overwrite the Davis AI default settings.
+![](./assets/dt-adservice.png)
+- click on the "..." in the header of the service and then "Edit"
+- click on "Anomaly detection"
 
 4. Modify the service settings as outlined below
-- Disable global anomaly detection
-- Set "detect response time degradations" to "using fixed thresholds" from the drop down
-- Set "Alert if the response time of the slowest 10% increases beyond" to "800"ms
+- **Disable** global anomaly detection
+- Set "detect response time degradations" to "**using fixed thresholds**" from the drop down
+- Set "Alert if the response time increases beyond **100**ms within an observation period of 5 minutes.
+- Set "Alert if the response time of the slowest 10% increases beyond" to **500**ms
 - Set sensitivity to "High"
+- In the "Reference Period" section at the end, click **Reset** the reference period
 - See image below for reference
 ![anomaly detection](./assets/dt-anomaly-detection.png)
 

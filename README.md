@@ -27,12 +27,47 @@ In fact, we are going to install MicroK8s, Dynatrace OneAgent, Keptn, and even h
 
 There is a script provided for you, please go ahead and download the installation script.
 
-### 1. Download the github repo to your home directory**
+### 1. Download the github repo to your home directory
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
+<<<<<<< HEAD
 ### 1. Create a Dynatrace API Token
 Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API. Then, create anew API token with the following permissions
+=======
+### 2. Open the file to edit it
+We have to paste in some credentials into the file, therefore we are going to open it.
+
+```
+nano keptn-in-a-box.sh
+```
+
+Move down to the section **Define Dynatrace Environment** in line 39.
+```
+# ---- Define Dynatrace Environment ----
+# Sample: https://{your-domain}/e/{your-environment-id} for managed or https://{your-environment-id}.live.dynatrace.com for SaaS
+TENANT=
+PAASTOKEN=
+APITOKEN=
+```
+
+Now the next steps are **very important**.
+Copy and paste your Dynatrace tenant into the file. Please mind the format: **include https://** but **no trailing slashes** allowed!
+
+A correct value is `TENANT=https://pia11111.sprint.dynatracelabs.com`
+
+Next, we are going to fetch the tokens.
+
+
+### 3. Create a Dynatrace PaaS Token
+In your Dynatrace tenant, go to **Settings > Integration > Platform as a Service**, and create a new PaaS Token.
+
+
+
+### 4. Create a Dynatrace API Token
+Log in to your Dynatrace tenant and on the left-hand side go to **Settings > Integration > Dynatrace API**. 
+Then, create a new API token with the following permissions:
+>>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
 
 * Access problem and event feed, metrics, and topology
 * Read log content
@@ -47,22 +82,26 @@ Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API
 The below screen shot can be used for reference:
 ![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
 
+<<<<<<< HEAD
 ### 1. Create a Dynatrace PaaS Token
 In your Dynatrace tenant, go to Settings > Integration > Platform as a Service, and create a new PaaS Token.
 
 ### 1. Enter your Dynatrace Credentials
 Now that you have an API-Token and a PaaS-Token, we can enter the credentials.
 In the keptn-in-a-box.sh file enter your credentials under the section "Define Dynatrace Environment".
+=======
 
+### 5. Execute the installer for Keptn-in-a-box
+>>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
 
-Edit the keptn in a box script to include your tenant ID, PASS & API tokens. These variable values can be found on line 39 of the file:
-```
-# ---- Define Dynatrace Environment ---- 
-# Sample: https://{your-domain}/e/{your-environment-id} for managed or https://{your-environment-id}.live.dynatrace.com for SaaS
-TENANT="https://mytenant.live.dynatrace.com"
-PAASTOKEN="myDynatracePaaSToken"
-APITOKEN="myDynatraceApiToken"
-```
+**Important**: Before you proceed, please double check the provided values.
+- No trailing slashes for TENANT but with the https:// prefix
+- PAASTOKEN set to the PaaS token
+- APITOKEN set to the API token
+
+![](./assets/dt-tokens.png)
+
+Save the file (`CTRL+O, CTRL+X`) and proceed.
 
 ### 1. Enable Cert Mananger
 scroll down to line 137 an uncomment the certmanager install and enable flags to enable https communication
@@ -77,15 +116,23 @@ certmanager_enable=true
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
+<<<<<<< HEAD
 ### 1. Ignore the LESS command output and use the below command to watch the logs:
+=======
+### 6. Ignore the LESS command output and use the below command to watch the logs
+>>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
 
 While we wait for it to finish, we can watch the log output.
 ```
 tail -f /tmp/install.log
 ```
 
-Installation will take about 6-10 minutes, please be patient.
+Installation will take about 10 minutes, please be patient.
 In the meanwhile, your instructor will tell you more about Keptn and this hands-on-training.
+
+The last lines of the install log will look similar to this.
+![](./assets/installation-complete.png)
+
 
 ## What has been installed?
 
@@ -111,7 +158,15 @@ for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i;
 ```
 ### 1. Clone needed resources into your home directory
 
+Let's clone some needed resources that will come in handy for our workshop.
+
 ```
-Main
 git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
+```
+
+## Troubleshooting
+
+If the installation fails and you want to start over again, please remove microk8s first.
+```
+sudo snap remove microk8s
 ```
