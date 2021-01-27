@@ -11,7 +11,6 @@ objectives:
     key_sli: false
     pass:             # pass if (relative change <= 10% AND absolute value is < 1000)
       - criteria:
-          - "<=+10%"  # relative values require a prefixed sign (plus or minus)
           - "<1000"   # absolute values only require a logical operator
     warning:          # if the response time is below 1200ms, the result should be a warning
       - criteria:
