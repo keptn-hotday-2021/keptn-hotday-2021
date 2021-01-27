@@ -137,3 +137,9 @@ Let's clone some needed resources that will come in handy for our workshop.
 git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
 ```
 
+## Troubleshooting
+
+If the installation fails and you want to start over again, please remove microk8s first.
+```
+sudo snap remove microk8s
+```
