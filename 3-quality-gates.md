@@ -69,7 +69,7 @@ First, we want to add some performance tests. Keptn comes with a built-in servic
 
 1. Next, we are going to take a look at the quality gate evaluation in the Keptn's Bridge, which allows us to take a look at what is going on in Keptn. If you don't have it still open, please get the URL via this command and open the link on your browser.
     ```
-    echo http://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+    echo https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
     ```
 
     It will give you a link like http://keptn.xx-xxx-xxx-xxx.nip.io/.

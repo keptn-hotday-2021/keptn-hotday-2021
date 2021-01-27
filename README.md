@@ -31,7 +31,7 @@ There is a script provided for you, please go ahead and download the installatio
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
-### 2. Create a Dynatrace API Token
+### 1. Create a Dynatrace API Token
 Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API. Then, create anew API token with the following permissions
 
 * Access problem and event feed, metrics, and topology
@@ -47,10 +47,10 @@ Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API
 The below screen shot can be used for reference:
 ![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
 
-### 3. Create a Dynatrace PaaS Token
+### 1. Create a Dynatrace PaaS Token
 In your Dynatrace tenant, go to Settings > Integration > Platform as a Service, and create a new PaaS Token.
 
-### 4. Enter your Dynatrace Credentials
+### 1. Enter your Dynatrace Credentials
 Now that you have an API-Token and a PaaS-Token, we can enter the credentials.
 In the keptn-in-a-box.sh file enter your credentials under the section "Define Dynatrace Environment".
 
@@ -64,11 +64,20 @@ PAASTOKEN="myDynatracePaaSToken"
 APITOKEN="myDynatraceApiToken"
 ```
 
-Now we are going to exeucte the installer which will take a couple of minutes to finish.
+### 1. Enable Cert Mananger
+scroll down to line 137 an uncomment the certmanager install and enable flags to enable https communication
+```
+# -- or install cert manager
+certmanager_install=true
+certmanager_enable=true
+#create_workshop_user=true
+```
+
+### 1. #Execute the installer script which will take a couple of minutes to finish.
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
-### 6. Ignore the LESS command output and use the below command to watch the logs:
+### 1. Ignore the LESS command output and use the below command to watch the logs:
 
 While we wait for it to finish, we can watch the log output.
 ```
@@ -93,14 +102,14 @@ In the meanwhile, your instructor will tell you more about Keptn and this hands-
 
 You will need a couple of resources in this workshop. Let's go ahead and get them!
 
-### 7. Run the following command to restart some of the deployed pods
+### 1. Run the following command to restart some of the deployed pods
 
 Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
 
 ```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
 ```
-### 8. Clone needed resources into your home directory
+### 1. Clone needed resources into your home directory
 
 ```
 Main

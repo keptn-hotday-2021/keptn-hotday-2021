@@ -73,9 +73,9 @@ kubectl get pod --all-namespaces | grep -v "Running\|Terminating\|NAME"
 ```
 Once the pods are succefully running try the two URLs again. You can re-generate the urls with the below two commands. (execute and open the URLs in a browser)
 ```
-echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo https://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 
-echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo https://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
 Gitea
 - delete GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
