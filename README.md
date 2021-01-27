@@ -98,7 +98,7 @@ certmanager_enable=true
 #create_workshop_user=true
 ```
 
-### 7. #Execute the installer script which will take a couple of minutes to finish.
+### 7. Execute the installer script which will take a couple of minutes to finish.
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
