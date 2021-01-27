@@ -56,7 +56,7 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 
 5. The remaining services can be onboarded with the script from the github repo 
 ```
-./home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh
+/home/$(whoami)/keptn-hotday-2021/scripts/onboard-hipstershop.sh
 ```
 
 6. Once the script has finished running verify that you can reach both URLs which were printed in the console. 
@@ -65,19 +65,34 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 
 Please let your instructor know if you can not access the application.
 
+7. As Keptn is Git-based, we also want to have insights into the Git repo of Keptn. Usually, this would be connected to Bitbucket, Github, GitLab, etc - but for today we are using Gitea, which is a simple UI for exploring our Git repo. We have to update our Keptn project, and we'll go ahead and do this via a helper function that will provide us the necessary token.
+
+```
+cd /home/$(whoami)/keptn-in-a-box/resources/gitea
+source ./gitea-functions.sh ; createKeptnRepoManually hipstershop
+
+cd /home/$(whoami)
+```
+
+Take a look in Gitea and verify that the Git upstream has been successfully created.
+![](./assets/gitea-overview.png)
+
+![](./assets/gitea-hipstershop-production.png)
+
 ## Troubleshooting 
 
 If you are unable to reach the URLS or some pods are not running run the below command to identify the pods and notify your instructor. 
 ```
 kubectl get pod --all-namespaces | grep -v "Running\|Terminating\|NAME"
 ```
-Once the pods are succefully running try the two URLs again. You can re-generate the urls with the below two commands. (execute and open the URLs in a browser)
+Once the pods are succesfully running try the two URLs again. You can re-generate the urls with the below two commands. (execute and open the URLs in a browser)
 ```
 echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 
 echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
-Gitea
-- delete GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
+
+If updating the project with Git upstream to Gitea is not working:
+- delete the GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
 - if not working, delete the `keptn-token.json`
 
