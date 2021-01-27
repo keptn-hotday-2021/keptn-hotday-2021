@@ -31,11 +31,7 @@ There is a script provided for you, please go ahead and download the installatio
 ```
 curl -O https://raw.githubusercontent.com/keptn-sandbox/keptn-in-a-box/release-0.7.3/keptn-in-a-box.sh
 ```
-<<<<<<< HEAD
-### 1. Create a Dynatrace API Token
-Log in to your Dynatrace tenant and go to Settings > Integration > Dynatrace API. Then, create anew API token with the following permissions
-=======
-### 2. Open the file to edit it
+### 1. Open the file to edit it
 We have to paste in some credentials into the file, therefore we are going to open it.
 
 ```
@@ -59,15 +55,14 @@ A correct value is `TENANT=https://pia11111.sprint.dynatracelabs.com`
 Next, we are going to fetch the tokens.
 
 
-### 3. Create a Dynatrace PaaS Token
+### 1. Create a Dynatrace PaaS Token
 In your Dynatrace tenant, go to **Settings > Integration > Platform as a Service**, and create a new PaaS Token.
 
 
 
-### 4. Create a Dynatrace API Token
+### 1. Create a Dynatrace API Token
 Log in to your Dynatrace tenant and on the left-hand side go to **Settings > Integration > Dynatrace API**. 
 Then, create a new API token with the following permissions:
->>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
 
 * Access problem and event feed, metrics, and topology
 * Read log content
@@ -82,17 +77,8 @@ Then, create a new API token with the following permissions:
 The below screen shot can be used for reference:
 ![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
 
-<<<<<<< HEAD
-### 1. Create a Dynatrace PaaS Token
-In your Dynatrace tenant, go to Settings > Integration > Platform as a Service, and create a new PaaS Token.
 
-### 1. Enter your Dynatrace Credentials
-Now that you have an API-Token and a PaaS-Token, we can enter the credentials.
-In the keptn-in-a-box.sh file enter your credentials under the section "Define Dynatrace Environment".
-=======
-
-### 5. Execute the installer for Keptn-in-a-box
->>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
+### 1. Execute the installer for Keptn-in-a-box
 
 **Important**: Before you proceed, please double check the provided values.
 - No trailing slashes for TENANT but with the https:// prefix
@@ -116,11 +102,7 @@ certmanager_enable=true
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
-<<<<<<< HEAD
-### 1. Ignore the LESS command output and use the below command to watch the logs:
-=======
-### 6. Ignore the LESS command output and use the below command to watch the logs
->>>>>>> 62d91507a31b413dff7bd9e9f33a9a46ec294300
+### 1. Ignore the LESS command output and use the below command to watch the logs
 
 While we wait for it to finish, we can watch the log output.
 ```
