@@ -89,20 +89,11 @@ The below screen shot can be used for reference:
 
 Save the file (`CTRL+O, CTRL+X`) and proceed.
 
-### 6. Enable Cert Mananger
-scroll down to line 137 an uncomment the certmanager install and enable flags to enable https communication
-```
-# -- or install cert manager
-certmanager_install=true
-certmanager_enable=true
-#create_workshop_user=true
-```
-
-### 7. Execute the installer script which will take a couple of minutes to finish.
+### 6. Execute the installer script which will take a couple of minutes to finish.
 ```
 chmod +x keptn-in-a-box.sh; sudo bash -c './keptn-in-a-box.sh &'
 ```
-### 8. Ignore the LESS command output and use the below command to watch the logs
+### 7. Ignore the LESS command output and use the below command to watch the logs
 
 While we wait for it to finish, we can watch the log output.
 ```
@@ -131,14 +122,14 @@ The last lines of the install log will look similar to this.
 
 You will need a couple of resources in this workshop. Let's go ahead and get them!
 
-### 9. Run the following command to restart some of the deployed pods
+### 8. Run the following command to restart some of the deployed pods
 
 Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
 
 ```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
 ```
-### 10. Clone needed resources into your home directory
+### 9. Clone needed resources into your home directory
 
 Let's clone some needed resources that will come in handy for our workshop.
 
