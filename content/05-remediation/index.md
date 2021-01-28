@@ -1,10 +1,10 @@
-# Automating Operations & Remediation
+## Automating Operations & Remediation
 
 In this part of the workshop we are moving from *deploying* our applications to production to *operating* them in production and keep them healthy! This is the part that you might already be familiar with Dynatrace and its great A.I. assistant Davis that discovers production issues and its root cause automatically. In the next part, we are taking this even further with Keptn, which can automatically react on those identified problems and trigger counter-actions that will remediate the issue. Even more: Keptn will make sure that the issue is actually remediated, and if not, more remediation actions can be triggered. Exciting, right?
 
 Let's get started!
 
-## Feature flags
+### Feature flags
 
 Our application is prepared with a feature flag that we can turn on and off without the need to redeploy the application. We are going to use [Unleash](https://unleash.github.io/) as the framework for the feature flags.
 
@@ -46,9 +46,9 @@ Credentials: keptn/keptn
 
 We can see one feature flag created.
 
-![unleash](./assets/unleash-ff.png)
+![unleash](../../assets/images/unleash-ff.png)
 
-## Configure Keptn for Unleash
+### Configure Keptn for Unleash
 
 
 1. We are going to add some remediation instructions to Keptns by means of adding a `remediation.yaml` file. This file contains a sequence of actions that will be triggered in response to a problem ticket received from Dynatrace. With this, you can build your own remediation workflows!
@@ -88,13 +88,14 @@ spec:
     keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
     ```
 
-## Let's run the experiment
+### Let's run the experiment
 
 Let's now change our configuration without redeploying the application. We will do this via the feature flag that we just created in Unleash. 
 Please note that our application is already prepared to implement the effect of the feature flag and with Unleash we have a nice way to toggle the feature flag from outside of the application.
 
 In your Unleash environment, let's do the following: **Turn on** the feature flag "PromotionCampaign" that we created earlier.
-![unleash enable](./assets/unleash-enable.png)
+
+![unleash enable](../../assets/images/unleash-enable.png)
 
 ### What will happen next?
 
@@ -133,29 +134,30 @@ In this example, we have two remediations defined, but in today's workshop we on
 The [Unleash feature toggle integration](https://github.com/keptn-contrib/unleash-service/) is picking up these values and executing the remediation as defined in the declarative `remediation.yaml` file. 
 
 We will see all the steps that are executed in the Keptn's Bridge:
-![bridge remediation](./assets/bridge-remediation.png)
+
+![bridge remediation](../../assets/images/bridge-remediation.png)
 
 We see that Keptn triggered the remediation by means of switching off the feature flag. We can also see that Keptn triggered another evaluation, reusing again the SLOs that we have already defined. 
 If the SLOs are met again, the remediation loop is closed, if not, Keptn will trigger the next remediation (if defined).
 
 ### Investigate problem ticket
+
 Let's have a look at the problem ticket in Dynatrace by clicking on the **Problem URL** label in the Keptn's Bridge.
 
-![](./assets/dt-problem-comment.png)
+![problem](../../assets/images/dt-problem-comment.png)
 
 On the `AdService` itself you will also see that Keptn triggered a remediation action and that the quality gate was successfully executed.
-![](./assets/dt-problem-events.png)
+![problem](../../assets/images/dt-problem-events.png)
 
 
-# Congratulations!
+## Congratulations!
 
-Congratulations! 
 You have successfully completed the hands-on-training and you are now ready for your Autonomous Cloud Journey with [Keptn](https://keptn.sh)!
 
 To explore more use cases around Keptn, there is a dedicated tutorials hub that will help you get started: [tutorials.keptn.sh](https://tutorials.keptn.sh).
 And if you want to get in touch with the Keptn community, please consider joining our [Slack channel](https://slack.keptn.sh) and follow us on Twitter via [@keptnProject](https://twitter.com/keptnProject)!
 
-## Summary
+### Summary
 What you have accomplished in this hands-on-training:
 
 - Set up a multi-stage delivery pipeline with Keptn
@@ -164,7 +166,7 @@ What you have accomplished in this hands-on-training:
 - Set up a quality gate for one microservice using data from Dynatrace
 - Added auto-remediation instructions to remediate issues in production
 
-# Resources
+### Resources
 
 If you want to learn more, please have a look at the following resources.
 
