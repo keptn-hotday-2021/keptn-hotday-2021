@@ -5,7 +5,7 @@ In the previous step we have successfully deployed our application consisting of
 Now that our application is already deployed, we want to strengthen our deployment process by including automated quality gates based on SRE principles such as Service-Level Indicators (SLI) and Service-Level Objecives (SLO). [Learn more also in this YouTube video](https://www.youtube.com/watch?v=650Gn--XEQE). 
 Therefore we need to configure Dynatrace and deploy the Dynatrace integration to Keptn to be able to fetch data from Dynatrace which will be used for the evaluation in the [Keptn quality gates](https://keptn.sh/docs/0.7.x/quality_gates/).
 
-## Configure Dynatrace for our project
+### Configure Dynatrace for our project
 
 1. First, we are going to install (update) the Dynatrace integration for Keptn. This is done with applying the Dynatrace service manifest to our Keptn installation in the MicroK8s cluster.
     ```
@@ -25,7 +25,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     This will create tagging rules, default dashboards, management zones, alerting profiles and an integration for Dynatrace problem notifications to be sent to Keptn. 
 
-    ![](./assets/dt-dashboard.png) 
+    ![dashboard](../../assets/images/dt-dashboard.png) 
 
 1. Let's take a look at the dashboard and what has already been created for us. Please navigate to your Dynatrace tenant, click on Dashboards and the "Hipstershop@Keptn" dashbaord. You will see that we have dedicated dashboards for our two stages "hardening" and "production". 
 
@@ -48,7 +48,8 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
     - Set sensitivity to "High"
     - In the "Reference Period" section at the end, click **Reset** the reference period
     - See image below for reference
-    ![anomaly detection](./assets/dt-anomaly-detection.png)
+
+    ![anomaly detection](../../assets/images/dt-anomaly-detection.png)
 
 
 Let's continue with configuring our Keptn to be able to fetch data from Dynatrace.

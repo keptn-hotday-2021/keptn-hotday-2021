@@ -1,26 +1,26 @@
-# Autonomous Cloud with Keptn: Delivery & Operations 
+## Autonomous Cloud with Keptn: Delivery & Operations 
 
-
-## Welcome to the Hands-on-Training day
 
 In the next sections you will find the instructions to get familiar with the concept of the "Autonomous cloud" using Dynatrace and the open-source control-plane Keptn to implement it. 
 We have prepared detailed instructions that should help you to successfully complete the hands-on-training. However, please reach out to the instructors immediately if you get stuck or run into any issues.
 
 And most importantly: let's have fun walking through the lab!
-## Infrastructure in AWS
+
+### Infrastructure in AWS
 
 We have prepared the infrastructure for you. This is what's running behind the scenes to provide you this lab:
 - Ubuntu 20.4 LTS in AWS
 - Instance size: m5.4xlarge
 - Disk size: 30GB
-- MicroK8s
+- MicroK8s (we are going to install this together)
 
-## Connect to your instance
+### Connect to your instance
 
 To get started, we will SSH into the machine that is provided for you. There is no need to install anything locally on your own machine. We will execute all of the commands from the provided instance.
 
 Now please go ahead and follow your instructor to login to your machine.
-## Install Keptn
+
+### Install Keptn
 
 While we are going to learn what Keptn is, we will trigger the installation in the background. Please note that this script is provided for workshop scenarios and will install more than just Keptn.
 In fact, we are going to install MicroK8s, Dynatrace OneAgent, Keptn, and even have it initially configured so we can already access it. 
@@ -55,12 +55,15 @@ A correct value is `TENANT=https://pia11111.sprint.dynatracelabs.com`
 Next, we are going to fetch the tokens.
 
 
+
 ### 3. Create a Dynatrace PaaS Token
+
 In your Dynatrace tenant, go to **Settings > Integration > Platform as a Service**, and create a new PaaS Token.
 
 
 
 ### 4. Create a Dynatrace API Token
+
 Log in to your Dynatrace tenant and on the left-hand side go to **Settings > Integration > Dynatrace API**. 
 Then, create a new API token with the following permissions:
 
@@ -85,7 +88,7 @@ The below screen shot can be used for reference:
 - PAASTOKEN set to the PaaS token
 - APITOKEN set to the API token
 
-![](./assets/dt-tokens.png)
+![dt-tokens](../../assets/images/dt-tokens.png)
 
 Save the file (`CTRL+O, CTRL+X`) and proceed.
 
@@ -106,7 +109,7 @@ Installation will take about 10 minutes, please be patient.
 In the meanwhile, your instructor will tell you more about Keptn and this hands-on-training.
 
 The last lines of the install log will look similar to this.
-![](./assets/installation-complete.png)
+![installation-complete](../../assets/images/installation-complete.png)
 
 
 ## What has been installed?

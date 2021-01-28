@@ -1,10 +1,10 @@
-# Deploy Hipstershop
+## Deploy Hipstershop
 
 In the first part of the workshop we will deploy a polyglot microservice application consisting of a couple of different microservices. Therefore, we will use the **Hipstershop/Online Boutique** application, which is a common demo application initially developed by Google.
 
 We are going to use Keptn to set up a multi-stage delivery pipeline with quality gates to control the release of new versions into production. In the second part of the workshop we will be extending this to bring auto-remediation into the project as well.
 
-## Create project 
+### Create project 
 
 As a first step, we are going to create a Keptn project that will hold all our resources like deployment files, and Keptn configurations for different stages, and microservices.
 
@@ -29,7 +29,7 @@ stages:
 As you can see, the shipyard file defines two stages for our multi-stage delivery in Keptn. The first stage is called "hardening" and we will deploy with a "blue_green" deployment strategy and our test strategy in this stage is to execute "performance" tests. 
 For our "production" stage, we define how we want to execute the approval process. If the Keptn quality gates "passes" we want to automatically deploy the approved microservice into production. If the quality gate evaluation results in a warning, we want a "manual" approval process. Deployment should be again done using a "blue/green" deployment strategy. On top of this, we define to automatically execute remediation actions as counter measures if Keptn receives problem alerts from Dynatrace.
 
-## Onboard services
+### Onboard services
 
 Now that we have a project, let us add our application in terms of onboarding each microservice that we want to manage with Keptn.
 
@@ -63,7 +63,7 @@ keptn send event new-artifact --project=hipstershop --service=redis-cart --image
 
 6. Once the script has finished running verify that you can reach both URLs which were printed in the console. 
 
-![hipstershop-frontend](./assets/hipstershop-frontend.png)
+![hipstershop-frontend](../../assets/images/hipstershop-frontend.png)
 
 Please let your instructor know if you can not access the application.
 
@@ -82,11 +82,11 @@ echo http://$(kubectl get ing -n git gitea-ingress -o=jsonpath='{.spec.tls[0].ho
 ```
 
 Take a look in Gitea and verify that the Git upstream has been successfully created.
-![](./assets/gitea-overview.png)
+![gitea](../../assets/images/gitea-overview.png)
 
-![](./assets/gitea-hipstershop-production.png)
+![gitea](../../assets/images/gitea-hipstershop-production.png)
 
-## Troubleshooting 
+### Troubleshooting 
 
 If you are unable to reach the URLS or some pods are not running run the below command to identify the pods and notify your instructor. 
 ```

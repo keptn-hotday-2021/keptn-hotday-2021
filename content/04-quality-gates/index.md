@@ -1,11 +1,11 @@
 
-# Keptn Quality Gates
+## Keptn Quality Gates
 
 Quick recap: we have already deployed our application and configured our Dynatrace tenant for this application with the help of Keptn.
 Let us now add [Keptn Quality Gates](https://keptn.sh/docs/0.7.x/quality_gates/) to the game that **will help us prevent us to ship bad code into production**! 
 We already have added Dynatrace as the data source via the SLI service, now it is time to add some tests, have them executed automatically for each new version of a microservice and have the result evaluated by Keptn.
 
-## Add Tests
+### Add Tests
 
 First, we want to add some performance tests. Keptn comes with a built-in service for executing `jmeter` tests, but can be extended to use, e.g., NeoLoad or other test frameworks. 
 Tests will be triggered by Keptn right after deploying a new version of a service.
@@ -78,7 +78,7 @@ Tests will be triggered by Keptn right after deploying a new version of a servic
     It will give you a link like http://keptn.xx-xxx-xxx-xxx.nip.io/.
     Open the bridge and find the `frontend` service in the `hipstershop` project.
 
-    ![bridge](./assets/bridge-frontend-v15.png)
+    ![bridge](../../assets/images/bridge-frontend-v15.png)
 
 1. You can see that the evaluation failed since the `response_time_p95` did not meet the specified SLO. Thanks to the Keptn quality gate, this version is not promoted to production, but actually rolled back to the previous (stable) version.
 
@@ -90,7 +90,7 @@ Tests will be triggered by Keptn right after deploying a new version of a servic
 
 1. Switch to the Keptn's Bridge and have a look if this version is passing the quality gate and if it is shipped all the way to production with Keptn!
 
-    ![bridge](./assets/bridge-frontend-v21.png)
+    ![bridge](../../assets/images/bridge-frontend-v21.png)
 
 
-### Great job! Let's now continue to the next part of the lab!
+#### Great job! Let's now continue to the next part of the lab!

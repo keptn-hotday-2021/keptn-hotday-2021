@@ -1,11 +1,12 @@
 
-# Keptn
+## Keptn 
 ![](https://keptn.sh/images/logo.svg)
-## What is Keptn?
+
+### What is Keptn?
 
 Keptn is an event-based control plane for continuous delivery and automated operations for cloud-native applications.
 
-## Basic Keptn commands
+#### Basic Keptn commands
 - Check the version of the Keptn CLI as well as the Keptn cluster (if authenticated)
 
   ```
@@ -26,8 +27,6 @@ Keptn is an event-based control plane for continuous delivery and automated oper
 
 To learn more about Keptn check out the below links:
 
-[Keptn Homepage](https://keptn.sh/)
-
-[Join The Keptn Slack Channel](https://slack.keptn.sh/)
-
-[Join The Keptn Community and Contribute to the Keptn Project](https://github.com/keptn/community)
+- [Keptn Homepage](https://keptn.sh/)
+- [Join The Keptn Slack Channel](https://slack.keptn.sh/)
+- [Join The Keptn Community and Contribute to the Keptn Project](https://github.com/keptn/community)
