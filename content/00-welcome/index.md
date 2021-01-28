@@ -128,6 +128,11 @@ The last lines of the install log will look similar to this.
 You will need a couple of resources in this workshop. Let's go ahead and get them!
 
 ### 8. Run the following command to restart some of the deployed pods
+First refresh your shell session 
+```
+su - dtu.training
+```
+And then log out of this second session. 
 
 Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
 
