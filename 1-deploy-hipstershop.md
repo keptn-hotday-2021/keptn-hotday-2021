@@ -74,6 +74,11 @@ source ./gitea-functions.sh ; createKeptnRepoManually hipstershop
 cd /home/$(whoami)
 ```
 
+You can access your gitea instance:
+```
+echo http://$(kubectl get ing -n git gitea-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+```
+
 Take a look in Gitea and verify that the Git upstream has been successfully created.
 ![](./assets/gitea-overview.png)
 
