@@ -131,6 +131,20 @@ You will need a couple of resources in this workshop. Let's go ahead and get the
 
 Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
 
+For this we need to get some more privileges on our user. Execute the following commands to allow access to kubectl.
+```
+sudo usermod -a -G microk8s dtu.training
+sudo chown -f -R dtu.training ~/.kube
+```
+
+No, we need to login again to activate those access permissions.
+```
+su dtu.training
+```
+You'll find the password in your environment tab. It is the same password that you used to login to this machine via SSH.
+
+
+Now that we have the needed permissions, let's restart some of the pods.
 ```
 for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
 ```
