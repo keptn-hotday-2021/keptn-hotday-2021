@@ -8,13 +8,13 @@ spec:
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
             PromotionCampaign: "off"
     - problemType: Failure rate increase
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
             PromotionCampaign: "off"

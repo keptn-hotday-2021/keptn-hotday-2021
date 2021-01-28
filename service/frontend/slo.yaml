@@ -22,6 +22,10 @@ objectives:
       - criteria:
           - "<=+5%"  # not allowed to increase by more than 5% to previous evaluation
   - sli: throughput
+  - sli: response_time_p50
+    pass:
+      - criteria:
+          - ">=+25%"
 total_score:
   pass: "90%"
   warning: "75%"
