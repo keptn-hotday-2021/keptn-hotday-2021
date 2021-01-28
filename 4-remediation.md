@@ -25,7 +25,7 @@ curl --request POST \
   --header "authorization: Basic ${UNLEASH_TOKEN}" \
   --header 'content-type: application/json' \
   --data '{
-  "name": "EnablePromotion",
+  "name": "PromotionCampaign",
   "description": "adservice",
   "enabled": false,
     "strategies": [
@@ -80,39 +80,20 @@ spec:
           name: Toogle feature flag
           description: Toogle feature flag EnablePromotion to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
     - problemType: Failure rate increase
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
           description: Toogle feature flag EnablePromotion to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
 ```
 
 2. Next we are going to add an SLO file for our `AdService`.
 ```
 keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
 ```
-
-3. Login to the Dynatrace Tenant UI
-Navigate to the hipstershop adservice in your Dynatrace tenant:
-![](./assets/dt-transaction-services.png)
-
-Next, we are going to edit the anomaly detection to overwrite the Davis AI default settings.
-![](./assets/dt-adservice.png)
-- click on the "..." in the header of the service and then "Edit"
-- click on "Anomaly detection"
-
-4. Modify the service settings as outlined below
-- **Disable** global anomaly detection
-- Set "detect response time degradations" to "**using fixed thresholds**" from the drop down
-- Set "Alert if the response time increases beyond **100**ms within an observation period of 5 minutes.
-- Set "Alert if the response time of the slowest 10% increases beyond" to **500**ms
-- Set sensitivity to "High"
-- In the "Reference Period" section at the end, click **Reset** the reference period
-- See image below for reference
-![anomaly detection](./assets/dt-anomaly-detection.png)
 
 
 5. Deploy version that has the flag included. 
@@ -153,14 +134,14 @@ spec:
           name: Toogle feature flag
           description: Toogle feature flag EnablePromotion to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
     - problemType: Failure rate increase
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
           description: Toogle feature flag EnablePromotion to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
 ```
 
 In this example, we have two remediations defined, but in today's workshop we only use the one for the `problemType` "Response time degradation". There is an `action` defined if the problem opens, which is a `toggle-feature` action. It has name, description, and what is important for the automation part: a value property with key/value pairs. In our case the key is the name of the feature flag, i.e., `EnablePromotion` and the value is the state we want the feature toggle to set. 

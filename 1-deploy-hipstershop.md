@@ -41,7 +41,7 @@ keptn onboard service adservice --project=hipstershop --chart=/home/$(whoami)/ke
 
 2. Now that we added deployment information in terms of Helm charts to Keptn, we can go ahead and deploy a specific version of our first microservice.
 ```
-keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice:jdk11
+keptn send event new-artifact --project=hipstershop --service=adservice --image=docker.io/jetzlstorfer/adservice:promotioncampaign-slow
 ```
 
 3. Let's add our second service in the same way we did with the first one:
@@ -49,7 +49,9 @@ keptn send event new-artifact --project=hipstershop --service=adservice --image=
 keptn onboard service redis-cart --project=hipstershop --chart=/home/$(whoami)/keptn-hotday-2021/helm/redis-cart/ --deployment-strategy=direct
 ```
 
-4. Again, we want to deploy it.
+Maybe you have spotted already the difference in the `deployment-strategy`? Well, for our redis deployment we don't want to have a blue/green deployment which would be the default for all of the services as defined in the `shipyard.yaml` file. 
+
+4. Again, we want to deploy it. This service will be deployed *directly*, no blue/green deployment strategy in contrast to the previous service.
 ```
 keptn send event new-artifact --project=hipstershop --service=redis-cart --image=redis:alpine
 ```

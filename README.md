@@ -100,6 +100,8 @@ While we wait for it to finish, we can watch the log output.
 tail -f /tmp/install.log
 ```
 
+You can exit this with `CTRL+c`.
+
 Installation will take about 10 minutes, please be patient.
 In the meanwhile, your instructor will tell you more about Keptn and this hands-on-training.
 
@@ -109,13 +111,13 @@ The last lines of the install log will look similar to this.
 
 ## What has been installed?
 
-- MicroK8s: a small Kubernetes distribution
-- Keptn
-- Unleash
-- Dynatrace OneAgent
 - Docker
+- MicroK8s: a small Kubernetes distribution
+- Keptn (control-plane + execuption-plane)
+- Unleash feature toggle framework
+- Dynatrace OneAgent
 - Sockshop (carts micro service) with multi-stage pipeline
-- Gitea - our UI for Git! (check the installation logs)
+- Gitea - our UI for Git (check the installation logs)
 - A simple welcome website (check the installation logs)
 
 ## Clone needed resources
