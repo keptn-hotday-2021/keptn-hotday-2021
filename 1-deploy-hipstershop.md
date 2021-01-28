@@ -87,9 +87,9 @@ kubectl get pod --all-namespaces | grep -v "Running\|Terminating\|NAME"
 ```
 Once the pods are succesfully running try the two URLs again. You can re-generate the urls with the below two commands. (execute and open the URLs in a browser)
 ```
-echo https://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 
-echo https://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
 
 If updating the project with Git upstream to Gitea is not working:

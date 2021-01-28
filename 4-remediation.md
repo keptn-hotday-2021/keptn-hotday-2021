@@ -40,7 +40,7 @@ curl --request POST \
 Let's verify that the feature flag was created in your Unleash server.
 
 ```
-echo https://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+echo http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
 Credentials: keptn/keptn
 
