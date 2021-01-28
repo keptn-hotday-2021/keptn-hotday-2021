@@ -25,7 +25,7 @@ curl --request POST \
   --header "authorization: Basic ${UNLEASH_TOKEN}" \
   --header 'content-type: application/json' \
   --data '{
-  "name": "EnablePromotion",
+  "name": "PromotionCampaign",
   "description": "adservice",
   "enabled": false,
     "strategies": [
@@ -44,28 +44,20 @@ echo http://unleash.unleash-dev.$(kubectl get ing -n default homepage-ingress -o
 ```
 Credentials: keptn/keptn
 
-We can see one feature flag created
+We can see one feature flag created.
+
 ![unleash](./assets/unleash-ff.png)
 
 ## Configure Keptn for Unleash
 
-### Credentials
-The credentials for Unleash have already been added in the inital installation script.
 
-TODO probably remove this:
-```
-kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.2.0/deploy/service.yaml -n keptn
-```
+1. We are going to add some remediation instructions to Keptns by means of adding a `remediation.yaml` file. This file contains a sequence of actions that will be triggered in response to a problem ticket received from Dynatrace. With this, you can build your own remediation workflows!
 
-## Keep this for reference (might not be needed - we have to verify it)
+    ```
+    keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/remediation.yaml --resourceUri=remediation.yaml
+    ```
 
-1. Configure unleash remediation instructions
-
-```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/remediation.yaml --resourceUri=remediation.yaml
-```
-
-The instructions that we are adding:
+The instructions that we are adding have the following content:
 
 ```
 apiVersion: spec.keptn.sh/0.1.4
@@ -78,62 +70,35 @@ spec:
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
     - problemType: Failure rate increase
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
 ```
 
-2. Next we are going to add an SLO file for our `AdService`.
-```
-keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
-```
+2. Next we are going to add an SLO file for our `AdService`. This file checks if our SLOs are met. You will remember this from our quality gates earlier, although for a different service. This time we are going to use the SLO file for checking if the remediation is actually working! No guesswork anymore, we will have proof by an automated execution of Keptn quality gates after each remediation action.
 
-3. Login to the Dynatrace Tenant UI
-Navigate to the hipstershop adservice in your Dynatrace tenant:
-![](./assets/dt-transaction-services.png)
-
-Next, we are going to edit the anomaly detection to overwrite the Davis AI default settings.
-![](./assets/dt-adservice.png)
-- click on the "..." in the header of the service and then "Edit"
-- click on "Anomaly detection"
-
-4. Modify the service settings as outlined below
-- **Disable** global anomaly detection
-- Set "detect response time degradations" to "**using fixed thresholds**" from the drop down
-- Set "Alert if the response time increases beyond **100**ms within an observation period of 5 minutes.
-- Set "Alert if the response time of the slowest 10% increases beyond" to **500**ms
-- Set sensitivity to "High"
-- In the "Reference Period" section at the end, click **Reset** the reference period
-- See image below for reference
-![anomaly detection](./assets/dt-anomaly-detection.png)
-
-
-5. Deploy version that has the flag included. 
-
-also the JDK11 version should have the feature flag included -- TO BE TESTED!
-```
-keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice --tag=v1.5
-```
-
+    ```
+    keptn add-resource --project=hipstershop --service=adservice --stage=production --resource=/home/$(whoami)/keptn-hotday-2021/service/adservice/slo.yaml --resourceUri=slo.yaml
+    ```
 
 ## Let's run the experiment
 
-Let's now change our configuration without redeploying the application. We will do this via the Feature Toggle that we just created. 
+Let's now change our configuration without redeploying the application. We will do this via the feature flag that we just created in Unleash. 
 Please note that our application is already prepared to implement the effect of the feature flag and with Unleash we have a nice way to toggle the feature flag from outside of the application.
 
-In your Unleash environment, let's do the following: **Turn on** the feature flag "EnablePromotion" that we created earlier.
+In your Unleash environment, let's do the following: **Turn on** the feature flag "PromotionCampaign" that we created earlier.
 ![unleash enable](./assets/unleash-enable.png)
 
 ### What will happen next?
 
-This will enable a special promotion in our `AdService` of the Hipstershop. However, it our demo it is expected, that this will introduce some troubles. But don't worry, Keptn got us covered!
+This will enable a special promotion in our `AdService` of the Hipstershop. However, in our demo it is expected, that this will introduce some troubles. But don't worry, Keptn got us covered!
 
 After a couple of minutes Dynatrace will detect a decrease in the response time of the `AdService` and will open a problem ticket. Due to the Keptn integration with Dynatrace, an alert is sent from Dynatrace to Keptn.
 Keptn will pick up this problem event (alert) and start executing the remediation workflow. 
@@ -151,19 +116,19 @@ spec:
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
     - problemType: Failure rate increase
       actionsOnOpen:
         - action: toggle-feature
           name: Toogle feature flag
-          description: Toogle feature flag EnablePromotion to OFF
+          description: Toogle feature flag PromotionCampaign to OFF
           value: 
-            EnablePromotion: "off"
+            PromotionCampaign: "off"
 ```
 
-In this example, we have two remediations defined, but in today's workshop we only use the one for the `problemType` "Response time degradation". There is an `action` defined if the problem opens, which is a `toggle-feature` action. It has name, description, and what is important for the automation part: a value property with key/value pairs. In our case the key is the name of the feature flag, i.e., `EnablePromotion` and the value is the state we want the feature toggle to set. 
+In this example, we have two remediations defined, but in today's workshop we only use the one for the `problemType` "Response time degradation". There is an `action` defined if the problem opens, which is a `toggle-feature` action. It has name, description, and what is important for the automation part: a value property with key/value pairs. In our case the key is the name of the feature flag, i.e., `PromotionCampaign` and the value is the state we want the feature toggle to set. 
 
 The [Unleash feature toggle integration](https://github.com/keptn-contrib/unleash-service/) is picking up these values and executing the remediation as defined in the declarative `remediation.yaml` file. 
 
@@ -173,17 +138,31 @@ We will see all the steps that are executed in the Keptn's Bridge:
 We see that Keptn triggered the remediation by means of switching off the feature flag. We can also see that Keptn triggered another evaluation, reusing again the SLOs that we have already defined. 
 If the SLOs are met again, the remediation loop is closed, if not, Keptn will trigger the next remediation (if defined).
 
+### Investigate problem ticket
+Let's have a look at the problem ticket in Dynatrace by clicking on the **Problem URL** label in the Keptn's Bridge.
+
+![](./assets/dt-problem-comment.png)
+
+On the `AdService` itself you will also see that Keptn triggered a remediation action and that the quality gate was successfully executed.
+![](./assets/dt-problem-events.png)
+
+
 # Congratulations!
 
 Congratulations! 
-You have successfully completed the hands-on-training with Dynatrace and Keptn!
+You have successfully completed the hands-on-training and you are now ready for your Autonomous Cloud Journey with [Keptn](https://keptn.sh)!
+
+To explore more use cases around Keptn, there is a dedicated tutorials hub that will help you get started: [tutorials.keptn.sh](https://tutorials.keptn.sh).
+And if you want to get in touch with the Keptn community, please consider joining our [Slack channel](https://slack.keptn.sh) and follow us on Twitter via [@keptnProject](https://twitter.com/keptnProject)!
 
 ## Summary
 What you have accomplished in this hands-on-training:
 
-- tba
-- tba
-- tba
+- Set up a multi-stage delivery pipeline with Keptn
+- Deployed full hipstershop in two stages: hardening and production
+- Automatically configered Dynatrace with default dashboards, tagging rules, management zones, alerting, etc
+- Set up a quality gate for one microservice using data from Dynatrace
+- Added auto-remediation instructions to remediate issues in production
 
 # Resources
 

@@ -7,11 +7,10 @@ We already have added Dynatrace as the data source via the SLI service, now it i
 
 ## Add Tests
 
-First, we want to add some performance tests. Keptn comes with a built-in service for executing jmeter tests, but can be extended to use, e.g., NeoLoad or other test frameworks. 
+First, we want to add some performance tests. Keptn comes with a built-in service for executing `jmeter` tests, but can be extended to use, e.g., NeoLoad or other test frameworks. 
+Tests will be triggered by Keptn right after deploying a new version of a service.
 
-# TO DO ^ TALK TRACK / SLIDE ON TESTS BEING ADDED
-
-1. We are going to add the tests in terms of `.jmx` files added to the Keptn repository. These tests can be different for each service and stage. In this workshop, we are going to add some tests for our `frontend` service in the `hardening` stage.
+1. We are going to add the tests in terms of Jmeter `.jmx` files added to the Keptn repository. These tests can be different for each service and stage. In this workshop, we are going to add some tests for our `frontend` service in the `hardening` stage.
     ```
     keptn add-resource --project=hipstershop --stage=hardening --service=frontend --resource=/home/$(whoami)/keptn-hotday-2021/service/frontend/jmeter/load.jmx --resourceUri=jmeter/load.jmx
 
@@ -51,6 +50,10 @@ First, we want to add some performance tests. Keptn comes with a built-in servic
           - criteria:
               - "<=+5%"  # not allowed to increase by more than 5% to previous evaluation
       - sli: throughput
+      - sli: response_time_p50
+        pass:
+          - criteria:
+              - ">=+25%"
     total_score:
       pass: "90%"
       warning: "75%"
