@@ -12,7 +12,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/0.10.3/deploy/service.yaml -n keptn
     ```
 
-1. Verify that we have the dynatrace-service-xxx-xxx pod up and running in the keptn namespace
+1. Verify that we have the dynatrace-service-xxx-xxx pod up and running in the keptn namespace. There should be a new pod running for a few seconds. 
     ```
     kubectl get pods --selector=run=dynatrace-service -n keptn 
     ```
@@ -27,7 +27,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     ![dashboard](../../assets/images/dt-dashboard.png) 
 
-1. Let's take a look at the dashboard and what has already been created for us. Please navigate to your Dynatrace tenant, click on Dashboards and the "Hipstershop@Keptn" dashbaord. You will see that we have dedicated dashboards for our two stages "hardening" and "production". 
+1. Let's take a look at the dashboard and what has already been created for us. Please navigate to your Dynatrace tenant, click on Dashboards and the "Hipstershop@Keptn" dashboard. You will see that we have dedicated dashboards for our two stages "hardening" and "production". 
 
 1. Click on the "Services:production" tile that brings you to all services discovered and running in production. We are going to configure our `AdService` already for some later usage now. Please find the **hipstershop.AdService** in the list of discovered services.
 
@@ -35,21 +35,50 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     It will show up a couple of minutes later.
 
-1. Once we have our **hipstershop.AdService** discovered by Dynatrace, let's create tweak its Anomaly Detection settings as we are going to need that later.
-![](./assets/dt-adservice.png)
-- click on the "..." in the header of the service and then "Edit"
-- click on "Anomaly detection"
 
-- Modify the service settings as outlined below
-    - **Disable** global anomaly detection
-    - Set "detect response time degradations" to "**using fixed thresholds**" from the drop down
-    - Set "Alert if the response time increases beyond **100**ms within an observation period of 5 minutes.
-    - Set "Alert if the response time of the slowest 10% increases beyond" to **500**ms
-    - Set sensitivity to "High"
-    - In the "Reference Period" section at the end, click **Reset** the reference period
-    - See image below for reference
+1. Once you've found the AdService we will mark the primary call of the AdService as a "Key Request" in Dynatrace. Key Requests ins Dynatrace take priority of other requests. For example a login service may have multiple internal and external requests; single failed request to an external database is likely to have a higher business priority than other requests. Making a service call a Key Request allows enables sending instant feed back to teams who want to test how a new deployment or even specific features of a new deployment performs, which we'll be testing in a moment. 
 
-    ![anomaly detection](../../assets/images/dt-anomaly-detection.png)
+1. From the AdService Screen scroll to the bottom and click on "View Requests":
+
+ ![](../../assets/images/view-requests.png)
+
+1. This will show us all the requests being made of the service. We then want to use filtering to highlight only the request(s) of high importance. In this case we want to make the GetAds call as a key request of the AdService. Create a key request for the AdService:
+
+- Scroll down to the section "1 top contributor" and click on "GetAds"
+- This will put it in the "Filtered By" section
+- Now choose "Mark as Key Request"
+ ![](../../assets/images/dt-keyrequest-filter.png)
+ ![](../../assets/images/make-key-request.png)
+
+1. Once we have our hipstershop.AdService GetAds request, let's create tweak its Anomaly Detection settings to trigger an alert if this call violates a business driven SLO.
+
+    ![](./assets/dt-adservice.png)
+
+- click on the "..." in the header of the service
+- click on  "Edit"
+
+    ![](../../assets/images/edit-settings.png)
+
+1. From here select:
+
+- "Anomaly Detection" on the left
+- Scroll to the bottom and under "Set thresholds on key requests" 
+- click on "Edit" for the "GetAds Service
+- Toggle off "Use service or global settings", it is set to **ON** in the below example
+
+![](../../assets/images/key-request-thresholds.png)
+
+
+1. Modify the service settings as outlined below
+
+- Disable global anomaly detection
+- Set "detect response time degradations" to "using fixed thresholds" from the drop down
+- Set "Alert if the response time increases beyond 100ms within an observation period of 5 minutes.
+- Set "Alert if the response time of the slowest 10% increases beyond" to 500ms
+- Set sensitivity to "High"
+- See image below for reference
+
+![](../../assets/images/getAds-override.png)
 
 
 Let's continue with configuring our Keptn to be able to fetch data from Dynatrace.

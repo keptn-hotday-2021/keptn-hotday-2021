@@ -78,7 +78,7 @@ Then, create a new API token with the following permissions:
 * Read entities
 
 The below screen shot can be used for reference:
-![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
+![tokens](../../assets/images/dt-tokens-settings.png)
 
 
 ### 5. Execute the installer for Keptn-in-a-box
@@ -144,10 +144,6 @@ su dtu.training
 You'll find the password in your environment tab. It is the same password that you used to login to this machine via SSH.
 
 
-Now that we have the needed permissions, let's restart some of the pods.
-```
-for i in keptn ingress default unleash-dev ; do kubectl delete pods --all -n $i; done
-```
 ### 9. Clone needed resources into your home directory
 
 Let's clone some needed resources that will come in handy for our workshop.
@@ -158,7 +154,14 @@ git clone https://github.com/keptn-hotday-2021/keptn-hotday-2021
 
 ## Troubleshooting
 
-If the installation fails and you want to start over again, please remove microk8s first.
+If the installation fails and you want to start over again, please remove microk8s first with below command and notify your instructor.
 ```
 sudo snap remove microk8s
+```
+
+Then Re-run the keptn-in-a-box.sh script.
+
+If you re-install, as an additional step, once the cluster is up you will also need to refresh you Dynatrace Active Gate Bearer token. 
+```
+kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode
 ```
