@@ -71,6 +71,18 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 ![](../../assets/images/key-request-thresholds.png)
 
 
+1. Modify the service settings as outlined below
+
+- Disable global anomaly detection
+- Set "detect response time degradations" to "using fixed thresholds" from the drop down
+- Set "Alert if the response time increases beyond 100ms within an observation period of 5 minutes.
+- Set "Alert if the response time of the slowest 10% increases beyond" to 500ms
+- Set sensitivity to "High"
+- See image below for reference
+
+![](../../assets/images/getAds-override.png)
+
+
 Let's continue with configuring our Keptn to be able to fetch data from Dynatrace.
 
 1. Now we are going to add the Dynatrace SLI service that will fetch the data later on for our quality gates. Please note that currently this is an implementation detail that we are going to install two different services for Dynatrace. 
