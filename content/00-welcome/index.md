@@ -128,11 +128,21 @@ The last lines of the install log will look similar to this.
 You will need a couple of resources in this workshop. Let's go ahead and get them!
 
 ### 8. Run the following command to restart some of the deployed pods
-First refresh your shell session 
+
+Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
+
+For this we need to get some more privileges on our user. Execute the following commands to allow access to kubectl.
 ```
-su - dtu.training
+sudo usermod -a -G microk8s dtu.training
+sudo chown -f -R dtu.training ~/.kube
 ```
-And then log out of this second session. 
+
+No, we need to login again to activate those access permissions.
+```
+su dtu.training
+```
+You'll find the password in your environment tab. It is the same password that you used to login to this machine via SSH.
+
 
 ### 9. Clone needed resources into your home directory
 
