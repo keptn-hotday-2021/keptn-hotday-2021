@@ -9,7 +9,7 @@
 # sleep 3
 
 # sleep 1 
-# keptn send event new-artifact --project=hipstershop --service=adservice --image=gcr.io/dynatrace-demoability/adservice:jdk11
+# keptn send event new-artifact --project=hipstershop --service=adservice --image=docker.io/jetzlstorfer/adservice:promotioncampaign-slow
 # sleep 3
 
 # sleep 1

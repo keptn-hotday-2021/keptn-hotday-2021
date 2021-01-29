@@ -86,6 +86,12 @@ Take a look in Gitea and verify that the Git upstream has been successfully crea
 
 ![gitea](../../assets/images/gitea-hipstershop-production.png)
 
+8. Dynatrace OneAgent auto-injects at run time when pods come up in Kubernetes. To ensure that all pods have been properly injected we will issue the below command to redeploy all pods. This will ensure any pods which may have been started before OneAgent could be fully installed will be properly instrumented. 
+
+```
+for i in $(kubectl get namespaces | awk '{print $1}' | grep -v "NAME\|dynatrace\|kube") ; do kubectl delete pods --all -n $i; done
+```
+
 ### Troubleshooting 
 
 If you are unable to reach the URLS or some pods are not running run the below command to identify the pods and notify your instructor. 
@@ -98,7 +104,6 @@ echo http://frontend.hipstershop-hardening.$(kubectl get ing -n default homepage
 
 echo http://frontend.hipstershop-production.$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
 ```
-
 If updating the project with Git upstream to Gitea is not working:
 - delete the GIT token in user/settings/applications in Gitea online with `deleteApiToken` and then execute the `source ./gitea-functions.sh ; createKeptnRepoManually hipstershop` again.
 - if not working, delete the `keptn-token.json`
