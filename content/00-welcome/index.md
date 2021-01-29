@@ -78,7 +78,7 @@ Then, create a new API token with the following permissions:
 * Read entities
 
 The below screen shot can be used for reference:
-![](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07/img/5052ffbd6ab534f1.png)
+![tokens](../../assets/images/dt-tokens-settings.png)
 
 
 ### 5. Execute the installer for Keptn-in-a-box

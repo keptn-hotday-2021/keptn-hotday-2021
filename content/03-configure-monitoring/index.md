@@ -12,7 +12,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/0.10.3/deploy/service.yaml -n keptn
     ```
 
-1. Verify that we have the dynatrace-service-xxx-xxx pod up and running in the keptn namespace. There should be two new pods running for a few seconds. 
+1. Verify that we have the dynatrace-service-xxx-xxx pod up and running in the keptn namespace. There should be a new pod running for a few seconds. 
     ```
     kubectl get pods --selector=run=dynatrace-service -n keptn 
     ```
@@ -27,7 +27,7 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
     ![dashboard](../../assets/images/dt-dashboard.png) 
 
-1. Let's take a look at the dashboard and what has already been created for us. Please navigate to your Dynatrace tenant, click on Dashboards and the "Hipstershop@Keptn" dashbaord. You will see that we have dedicated dashboards for our two stages "hardening" and "production". 
+1. Let's take a look at the dashboard and what has already been created for us. Please navigate to your Dynatrace tenant, click on Dashboards and the "Hipstershop@Keptn" dashboard. You will see that we have dedicated dashboards for our two stages "hardening" and "production". 
 
 1. Click on the "Services:production" tile that brings you to all services discovered and running in production. We are going to configure our `AdService` already for some later usage now. Please find the **hipstershop.AdService** in the list of discovered services.
 
@@ -44,12 +44,10 @@ Therefore we need to configure Dynatrace and deploy the Dynatrace integration to
 
 1. This will show us all the requests being made of the service. We then want to use filtering to highlight only the request(s) of high importance. In this case we want to make the GetAds call as a key request of the AdService. Create a key request for the AdService:
 
-- Click on the filter bar 
-- Type and select Request:
-- Then choose the "GetAds" request 
-- Then click on the edit "..." button
-- Choose "Mark as Key Request
-
+- Scroll down to the section "1 top contributor" and click on "GetAds"
+- This will put it in the "Filtered By" section
+- Now choose "Mark as Key Request"
+ ![](../../assets/images/dt-keyrequest-filter.png)
  ![](../../assets/images/make-key-request.png)
 
 1. Once we have our hipstershop.AdService GetAds request, let's create tweak its Anomaly Detection settings to trigger an alert if this call violates a business driven SLO.
